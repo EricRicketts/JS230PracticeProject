@@ -17,15 +17,21 @@
 
   <script type="text/x-handlebars" id="show_all_contacts_partial">
     {{#each contacts}}
-      <h3>{{full_name}}</h3>
-      <dl>
-        <dt>Phone Number:</dt>
-        <dd>{{phone_number}}</dd>
-        <dt>Email:</dt>
-        <dd>{{email}}</dd>
-        <dt>Tags:</dt>
-        <dd>{{tags}}</dd>
-      </dl>
+      <div class="single_contact">
+        <h3>{{full_name}}</h3>
+        <dl>
+          <dt>Phone Number:</dt>
+          <dd>{{phone_number}}</dd>
+          <dt>Email:</dt>
+          <dd>{{email}}</dd>
+          <dt>Tags:</dt>
+          <dd>{{tags}}</dd>
+        </dl>
+        <div class="single_contact_buttons">
+          <button type="submit"><span>&#x270E;</span>Edit</button>
+          <button type="submit"><span>&#x1F5D1;</span>Delete</button>
+        </div>
+      </div>
     {{/each}}
   </script>
   <script type="text/x-handlebars" id="contacts_display">

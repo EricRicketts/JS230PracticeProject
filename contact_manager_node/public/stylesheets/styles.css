@@ -123,12 +123,15 @@ header p {
   padding: 5px;
 }
 
+.single_contact_buttons button > span {
+  display: inline-block;
+}
+
 .single_contact_buttons button:first-of-type {
   margin-right: 10px;
 }
 
-.single_contact_buttons button > span {
-  display: inline-block;
+.single_contact_buttons button > span:first-of-type {
   margin-right: 10px;
   transform: scale(-1, 1);
 }

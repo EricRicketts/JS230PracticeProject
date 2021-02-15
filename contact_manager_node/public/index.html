@@ -13,5 +13,40 @@
     <a href="#"><h1>Contact Manager</h1></a>
     <p>Using Localstorage, RequireJS, and HandlebarJS</p>
   </header>
+  <div id="contacts_or_forms"></div>
+
+  <script type="text/x-handlebars" id="show_all_contacts_partial">
+    {{#each contacts}}
+      <h3>{{full_name}}</h3>
+      <dl>
+        <dt>Phone Number:</dt>
+        <dd>{{phone_number}}</dd>
+        <dt>Email:</dt>
+        <dd>{{email}}</dd>
+        <dt>Tags:</dt>
+        <dd>{{tags}}</dd>
+      </dl>
+    {{/each}}
+  </script>
+  <script type="text/x-handlebars" id="contacts_display">
+    <div class="all_contacts_header">
+      <button type="button">Add Contact</button>
+      <input type="search" id="search" placeholder="Search">
+    </div>
+    <div class="all_contacts">
+      {{#if contacts}}
+        {{> show_all_contacts}}
+      {{else}}
+        {{> show_no_contacts}}
+      {{/if}}
+    </div>
+  </script>
+  <script type="text/x-handlebars" id="show_no_contacts_partial">
+    <div class="no_contacts">
+      <p>There are no contacts</p>
+      <button type="button">Add Contact</button>
+    </div>
+  </script>
+  <script type="text/javascript" src="./javascripts/app.js"></script>
 </body>
 </html>

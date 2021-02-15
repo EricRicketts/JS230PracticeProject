@@ -16,6 +16,10 @@ h1 {
   font-size: 36px;
 }
 
+button {
+  display: block;
+}
+
 header {
   background-color: #6f5499;
   text-align: center;
@@ -39,3 +43,38 @@ header p {
   color: #cdbfe3;
 }
 
+#contacts_or_forms {
+  width: 50%;
+  margin: auto;
+}
+
+.all_contacts_header {
+  height: 100px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #f5f5f5;
+  border: 1px solid #e3e3e3;
+  border-radius: 4px;
+}
+
+.all_contacts_header button {
+  width: 140px;
+  height: 45px;
+  border: 1px solid #6f5499;
+  color: #6f5499;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: Transparent;
+  padding: 5px;
+}
+
+.all_contacts_header input {
+  width: 200px;
+  height: 40px;
+  padding: 5px;
+  color: #cdbfe3;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #cdbfe3;
+}

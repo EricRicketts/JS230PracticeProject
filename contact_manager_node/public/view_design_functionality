@@ -1,0 +1,97 @@
+User Interface
+
+1.  Landing Page
+    1.  In both cases we need the Add Contact button and the Search Bar, call this the Landing Page Header
+    2.  If there are no contacts, we have another HTML element under the Landing Page Header which has the text
+    "There is no contacts" and another Add Contact button underneath it.
+    3.  If there are contacts then we produce rows of contact information:
+        1.  Single Contact Information
+            1.  Name
+            2.  Phone Number
+            3.  Email
+            4.  Tags
+            5.  Edit and Delete Buttons
+        2.  Show multiple contacts, limit number of contacts per row to four, then wrap.
+
+2.  Add Contact
+    1.  Select any Add Contact Button Brings up a Form.
+    2.  This Form has the following fields:
+        1.  A Create Contact Header
+        2.  A Full name field
+        3.  An Email Address field
+        4.  A Telephone number field
+        5.  A Tags Field
+        6.  Submit and Cancel Buttons
+    3.  Behavior:
+        1.  Full name field, write now it only checks for an empty field which would include nothing but spaces.
+        2.  The email field has to have '@something.suffix', in addition to checking for an empty field.
+        3.  The phone number just checks for an empty field.
+        4.  When a field is not filled out correctly, the field itself along with the label turn red with a error
+        message underneath.
+        5.  Options:
+            1.  Full name must have just letters and something resembling a first and last name.
+            2.  More thorough check of email.
+            3.  Have a format for telephone number, just use US telephone numbers.
+        6.  Tags
+            1.  The is a pull down menu for tags, if a tag is added then before submit is selected, the tag
+            should show up in another field.
+            2.  The user can then add another tag, the previously selected tag should not show up in the list, this
+            needs to be an on the spot modification.
+    4.  Button behavior
+        1.  Moving within the button elements change the color of the button and then change the mouse to a pointer.
+        2.  In both cases, after Submit or Cancel we are taken back to the home page.  With Submit the new contact
+        appears on the home page.
+
+3.  Delete Contact
+    1.  An Alert Pops up asking one if they are sure they want to delete the contact.
+    2.  Cancel, Alter goes away view remains the same.
+    3.  OK, the contact goes away, but we remain on the all contacts page.
+
+4.  Edit Contact
+    1.  Select the Edit Button on any Contact and an Edit Contact Form appears.
+    2.  This form has the following fields:
+        1.  A Edit Contact Header
+        2.  A Full name field
+        3.  An Email Address field
+        4.  A Telephone Number field
+        5.  A Tags Field
+        6.  Submit and Cancel Buttons
+    3.  Behavior:
+        1.  All fields are filled in when the Form first appears.
+        2.  Behavior for the Full name, email, and telephone fields are the same as the Add Contact Form.
+        3.  Tags
+            1.  There is going to be a field which lists the current tags for the contact.
+            2.  Under this there will be a select field which will add a single tag to the current Contact tags.
+            3.  This will update in real time.  The select field will not offer the current tags associated with the
+            user.
+            4.  Optional behavior.
+                1.  Delete a tag.
+                2.  Upon deletion the existing tags are update and the deleted tag is added back into the add tags
+                select field.
+    4.  Button behavior
+        1.  Same button behavior (coloring/pointer) as Add Contact.
+        2.  In both cases, after Submit or Cancel we are taken back to the home page.  With submit the modified
+        contact appears on the home page.
+
+5.  Search Feature
+    1.  As one starts typing letters the search starts working immediately.
+    2.  The search is on the full name of the contacts.
+    3.  Filtering starts right away, it looks as if the same view is maintained.
+    4.  As more than one letter is typed, we look for the substring in the name.
+    5.  Searching is refined with each new letter entered.
+    6.  If no contacts are found an element is added which much like the "There are not contacts" displays
+    "There are no contacts with the letter(s) <search token>"
+
+6.  Tagging Feature
+    1.  If there are no Tags then an element is added, just like no contacts says, "There are not tags."
+    2.  At the bottom of the Tag feature there will be an add tag field with a label that says Add Tag.
+    3.  With the Add Tag feature there will be a button that says Add.
+    4.  When the Add button is selected, the Tag will be added to the tag list but the view will remain.
+    5.  If tags exist, a tag label will show which is the name of the tag, another button will show which
+    says "Shared Contacts", when this button is selected we will present a view which is similar to the landing page
+    and which has a title "All Contacts Sharing <selected> Tag".
+    6.  Which buttons should be on this page, Add Contact and Add Tag?
+    7.  Below this at all times there are two buttons, one says Done and the other cancel.
+    8.  In both cases, selecting them returns one to the landing page.
+    9.  Optional feature, beside each tag, a delete tag feature which will delete the tag in question, but in so
+    doing it must remove all of the tags in the contacts and also the displayed tags in the Add Tag view.

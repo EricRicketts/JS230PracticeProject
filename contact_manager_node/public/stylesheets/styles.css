@@ -68,6 +68,7 @@ header p {
   font-size: 20px;
   background-color: Transparent;
   padding: 5px;
+  cursor: pointer;
 }
 
 .all_contacts_header input {
@@ -83,6 +84,10 @@ header p {
 .all_contacts {
   display: flex;
   flex-wrap: wrap;
+}
+
+.contact_id {
+  display: none;
 }
 
 .single_contact {
@@ -113,14 +118,15 @@ header p {
 
 .single_contact_buttons button {
   display: inline-block;
-  width: 100px;
-  height: 50px;
+  width: 50px;
+  height: 30px;
   border: 1px solid #6f5499;
   color: #6f5499;
   border-radius: 5px;
-  font-size: 15px;
+  font-size: 12px;
   background-color: Transparent;
   padding: 5px;
+  cursor: pointer;
 }
 
 .single_contact_buttons button > span {
@@ -131,7 +137,3 @@ header p {
   margin-right: 10px;
 }
 
-.single_contact_buttons button > span:first-of-type {
-  margin-right: 10px;
-  transform: scale(-1, 1);
-}

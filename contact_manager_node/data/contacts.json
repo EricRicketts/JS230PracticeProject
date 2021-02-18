@@ -18,20 +18,6 @@
     "full_name": "Pete Hanson",
     "email": "ph@example.com",
     "phone_number": "54321098761",
-    "tags": "none"
-  },
-  {
-    "id": 4,
-    "full_name": "Eric Ricketts",
-    "email": "eric_ricketts@icloud.com",
-    "phone_number": "9194495529",
-    "tags": "work,friend"
-  },
-  {
-    "id": 5,
-    "full_name": "Wendy Ricketts",
-    "email": "wendy_ricketts@icloud.com",
-    "phone_number": "9194495456",
-    "tags": "work,friend"
+    "tags": null
   }
 ]

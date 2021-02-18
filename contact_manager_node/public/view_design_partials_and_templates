@@ -1,0 +1,68 @@
+Now that we have the views sketched out and the behavior listed in the view_design_functionality file, we can start
+to organize the index file and templates.
+
+My goal is to make the View Object behave in such a way that all it does is receive data and show the data.  However,
+there will be some behavior in the form of conditionals in the templates because otherwise my template list would
+grow to be too big, there would be too much repetition where two templates might be completely alike except for
+a text change.
+
+index.html
+
+1.  Header
+    1.  This is in all the views, so this is going to be hard coded in the index file.
+    2.  The h1 element "Contact Manager" will be enclosed in an anchor element which href always takes us
+    back to the home page.
+    3.  There will be a paragraph under the anchor saying the same thing as the demonstrator project.
+    4.  A header element with id "home_page_header" will encompass the anchor and paragraph elements.
+2.  There will be one main element with id "main_content" which will be the element which sets the width of the
+    content under the header, it will receive all of the data from resolving any one of the given template and
+    partials.
+
+Templates and Partials
+
+<main>
+  <section id="content"></section>
+</main>
+
+What do we have for the "content heading"?  We we basically have two variations:
+1.  The landing page and searching.
+    1.  Add Contact Button, Edit Tags Button, and Search Bar
+    2.  Light grey back ground and same color as header for button border and button text.
+2.  Forms, Add Contact, Edit Contact, Edit Tags - all that is needed is a header, background is white
+3.  Have two different templates
+    1.  One for when all contacts are shown or searched for or are show when identifying tags with shared contacts
+        1.  Add Contact button
+        2.  Edit Tags button
+        3.  Search Field
+        4.  enclosed in a div so we do not have to put the styling on the parent
+    2.  One for when a form is displayed, this only has an h2 element, as with the previous template, it is enclosed
+    in a div so the styling does not have to be put in the parent.
+
+The final templates and/or partials to consider are the main content, what do we need?
+1.  We need a partial for a contact, this should be enveloped in a div element
+2.  We need a template for the contact information it will be a div element which runs through the #each helper
+to generate the series of contacts, this needs to be reused for the search results and for displaying the contacts
+which share the same tag.
+3.  We need a template which is just can h2 element which handles one of the three following situations:
+    1.  No contacts -> "There are no contacts."
+    2.  No search results -> "There are no contacts with the letter(s) " {{search term}}
+    3.  No contacts with the tag -> "There are no contacts with the tag" {{tag name}}
+    4.  This needs to be put in a div with a class, as the styling will be the same for all cases.
+4.  We need a template for the Add Contact / Edit Contact Form:
+    1.  Full name => text field
+    2.  Email address => email field
+    3.  Telephone number => phone field
+    4.  Tags => this field will be text, if Add Contact it will say "none"
+    5.  Additional Tag => This is a select element, next to it will be an Add button
+    6.  Submit Button => input[type=submit], Cancel Button => an anchor element with href to the home page.
+    7.  This obviously needs to be a form element.
+    8.  This one template should work, different data will be passed in for each of the fields, as the Edit Contact
+    field should have each of the fields filled in with the appropriate data.
+5.  There needs to be a partial for the tag Name and Shared Contacts Button
+    1.  list item with a span for the tag name and a button which says Shared Contacts button should display as an
+    inline block
+    2.  The parent item needs to be an unordered list
+6.  There needs to be a template for an unordered list
+    1.  The list items and their associated Shared Contacts button from the partial above
+    2.  Another list item span New Tag, text field and an Add button
+    3.  Final list item Done and Cancel Buttons

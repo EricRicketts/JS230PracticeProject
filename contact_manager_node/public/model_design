@@ -1,0 +1,18 @@
+Contact Model
+
+1.  Properties
+    1.  addContactHeader
+    2.  editContactHeader
+    3.  noContactsHeader
+    4.  allContacts []
+    5.  filteredContacts []
+    6.  allTags []
+    7.  userTags []
+    8.  availableTags []
+2.  Methods
+    1.  Provide an object format to the all_contacts_template.
+    2.  Provide a method to search for all contacts that share a given tag, return matches in filtered contacts.
+    3.  The model should ensure there are no duplicate tags if a new tag is added.
+    4.  If new tags are added to a contact, the model should ensure the added tag is added to userTags and removed
+    from availableTags.
+    5.  If there are no search results it should provide the header information.

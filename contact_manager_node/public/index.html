@@ -10,7 +10,7 @@
 </head>
   <body>
   <header id="page_header">
-    <a href="#"><h1>Contact Manager</h1></a>
+    <a href="/api/contacts" data-method="GET"><h1>Contact Manager</h1></a>
     <p>Using Localstorage, RequireJS, and HandlebarJS</p>
   </header>
   <main>
@@ -28,7 +28,7 @@
   <script type="text/x-handlebars-template" data-group="partial" id="form_submit_cancel_partial">
     <div class="contact_form_buttons_field">
       <input type="submit" value="Submit">
-      <a href="/">Cancel</a>
+      <a href="/api/contacts" data-method="GET">Cancel</a>
     </div>
   </script>
   <script type="text/x-handlebars-template" data-group="partial" id="single_contact_data_partial">
@@ -43,8 +43,8 @@
         <dl>{{tags}}</dl>
       </dl>
       <div>
-        <button type="button">Edit</button>
-        <button type="button">Delete</button>
+        <button type="button" data-id="{{id}}">Edit</button>
+        <button type="button" data-id="{{id}}"">Delete</button>
       </div>
     </div>
   </script>

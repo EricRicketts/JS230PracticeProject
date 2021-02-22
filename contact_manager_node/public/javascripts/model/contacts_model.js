@@ -1,4 +1,12 @@
 let ContactsModel = {
+  contactHasTag: function(contactObject, searchTag) {
+    return contactObject.tags.split(',').map(tag => tag.trim()).includes(searchTag);
+  },
+  findContactsWithTag: function(searchTag) {
+    return this.allContacts.filter(contactObject => {
+      return typeof contactObject.tags === 'string' ? this.contactHasTag(contactObject, searchTag) : false;
+    });
+  },
   formattedAllContactData: function() {
     return { contacts: this.allContacts };
   },
@@ -24,7 +32,7 @@ let ContactsModel = {
   init: function() {
     this.addContactHeader = 'Create Contact';
     this.editContactHeader = 'Edit Contact';
-    this.noContactsHeader = 'There are not contacts';
+    this.noContactsHeader = 'There are no contacts';
     this.allContacts = null;
     this.allUniqueTags = null;
     return this;

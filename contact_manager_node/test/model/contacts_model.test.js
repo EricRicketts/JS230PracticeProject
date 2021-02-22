@@ -16,7 +16,7 @@ describe('Contact Model', function () {
     });
 
     it('should provide header information for no contacts', function () {
-      expect(contacts.noContactsHeader).to.equal('There are not contacts');
+      expect(contacts.noContactsHeader).to.equal('There are no contacts');
     });
 
     it('should provide header information for no search results', function () {
@@ -123,6 +123,37 @@ describe('Contact Model', function () {
       it('should store all of the tag information', function () {
         expected = ['friend', 'relative', 'work'];
         expect(contacts.allUniqueTags).to.deep.equal(expected);
+      });
+
+      it('should return all the contacts with a given tag', function () {
+        expected = [
+          {
+            id: 1,
+            full_name: "Naveed Fida",
+            email: "nf@example.com",
+            phone_number: "12345678901",
+            tags: "work,friend"
+          },
+          {
+            id: 2,
+            full_name: "Victor Reyes",
+            email: "vpr@example.com",
+            phone_number: "09876543210",
+            tags: "work,friend"
+          },
+          {
+            id: 3,
+            full_name: "Pete Hanson",
+            email: "ph@example.com",
+            phone_number: "54321098761",
+            tags: "work"
+          }
+        ];
+        expect(contacts.findContactsWithTag('work')).to.deep.equal(expected);
+      });
+
+      it('should return an empty array if no contacts have the given tag', function () {
+        expect(contacts.findContactsWithTag('foo')).to.deep.equal([]);
       });
     });
   });

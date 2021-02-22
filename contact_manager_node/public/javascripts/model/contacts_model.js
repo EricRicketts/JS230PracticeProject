@@ -1,4 +1,12 @@
 let ContactsModel = {
+  addTag: function(contactObject, newTag) {
+    let contactObjectTags = contactObject.tags.split(',').map(tag => tag.trim());
+    if (!this.allUniqueTags.includes(newTag)) {
+      this.allUniqueTags.push(newTag)
+      this.allUniqueTags.sort();
+    }
+    return contactObjectTags.includes(newTag) ? false : { tags: this.formatContactTags(contactObjectTags, newTag) };
+  },
   contactHasTag: function(contactObject, searchTag) {
     return contactObject.tags.split(',').map(tag => tag.trim()).includes(searchTag);
   },
@@ -9,6 +17,10 @@ let ContactsModel = {
   },
   formattedAllContactData: function() {
     return { contacts: this.allContacts };
+  },
+  formatContactTags(contactObjectTags, newTag = false) {
+    if (newTag) { contactObjectTags.push(newTag) }
+    return contactObjectTags.join(',');
   },
   noSearchResults: function(searchString) {
     return `There are no contacts with the letters \'${searchString}\'`;

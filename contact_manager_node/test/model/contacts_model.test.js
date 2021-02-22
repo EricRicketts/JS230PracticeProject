@@ -155,6 +155,19 @@ describe('Contact Model', function () {
       it('should return an empty array if no contacts have the given tag', function () {
         expect(contacts.findContactsWithTag('foo')).to.deep.equal([]);
       });
+
+      it('should add a tag to a contact that is not a duplicate tag', function () {
+        let contactObject = {
+          id: 1,
+          full_name: "Naveed Fida",
+          email: "nf@example.com",
+          phone_number: "12345678901",
+          tags: "work,friend"
+        };
+        expected = [ { tags: "work,friend,programmer" }, ['friend', 'programmer', 'relative', 'work']];
+        results = [contacts.addTag(contactObject, 'programmer'), contacts.allUniqueTags];
+        expect(results).to.deep.equal(expected);
+      });
     });
   });
 });

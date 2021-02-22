@@ -10,9 +10,14 @@ Contact Model
     7.  userTags []
     8.  availableTags []
 2.  Methods
-    1.  Provide an object format to the all_contacts_template.
-    2.  Provide a method to search for all contacts that share a given tag, return matches in filtered contacts.
-    3.  The model should ensure there are no duplicate tags if a new tag is added.
-    4.  If new tags are added to a contact, the model should ensure the added tag is added to userTags and removed
-    from availableTags.
-    5.  If there are no search results it should provide the header information.
+    1.  Contact Behavior
+        1.  Provide an object format to the all_contacts_template.
+        2.  Provide a method to search for all contacts that share a given tag, return matches in filtered contacts.
+    2.  Tag Behavior
+        1.  The model searches for all contacts which share a common tag.
+        2.  A new tag can be added to a contact:
+            1.  If the tag to be added already exists in the contact tags, then false is returned.
+            2.  If the tag does not exist in the contact tags then it can be added.
+            3.  If the tag already exists in the global tag array then it is not added to the global tag array,
+            otherwise it is added.
+        3.  The model should format the tag information for the view.

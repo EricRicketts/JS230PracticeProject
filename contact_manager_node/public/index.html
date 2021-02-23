@@ -18,17 +18,30 @@
     <section id="content"></section>
   </main>
 
-  <script type="text/x-handlebars-template" data-group="partial" id="add_tag_partial">
-    <div class="add_tag">
-      <label for="tags">Add Tag:</label>
-      <input type="text">
-      <button type="button">Add</button>
-    </div>
-  </script>
   <script type="text/x-handlebars-template" data-group="partial" id="form_submit_cancel_partial">
-    <div class="contact_form_buttons_field">
       <input type="submit" value="Submit">
       <a href="/api/contacts" data-method="GET">Cancel</a>
+  </script>
+  <script type="text/x-handlebars-template" data-group="partial" id="form_tags_partial">
+    <div class="contact_tags">
+      <label for="tags">Current Tags:</label>
+      <select name="tags" id="tags">
+        {{#each tags as |tag|}}
+          <option value="{{tag}}">{{tag}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="available_tags_for_contact">
+      <label for="available_tags">Available Tags:</label>
+      <select name="available_tags" id="available_tags">
+        {{#each available_tags as |available_tag|}}
+          <option value="{{available_tag}}">{{available_tag}}</option>
+        {{/each}}
+      </select>
+    </div>
+    <div class="add_new_tag">
+      <label for="tags">Add Tag:</label>
+      <input type="text">
     </div>
   </script>
   <script type="text/x-handlebars-template" data-group="partial" id="single_contact_data_partial">
@@ -51,47 +64,37 @@
   <script type="text/x-handlebars-template" data-group="template" id="all_contacts_template">
     <div class="all_contacts">
       {{#each contacts}}
-        {{> single_contact_partial}}
-      {{/each}}
-    </div>
-  </script>
-  <script type="text/x-handlebars-template" data-group="template" id="all_tags_template">
-    <div class="all_tags">
-      {{#each tags}}
-        <div class="single_tag">
-          <p>{{tag}}</p>
-          <button type="button">Shared Contacts</button>
-        </div>
+        {{> single_contact_partial this}}
       {{/each}}
     </div>
   </script>
   <script type="text/x-handlebars-template" data-group="template" id="edit_add_contact_form_template">
     <div class="edit_add_contact_form">
       <form>
-        <div class="contact_form_field">
+        <div class="contact_form_generic_field">
           <label for="full_name">Full name:</label>
           <input type="text" id="full_name" name="full_name">
         </div>
-        <div class="contact_form_field">
+        <div class="contact_form_generic_field">
           <label for="email">Email address:</label>
           <input type="email" id="email" name="email">
         </div>
-        <div class="contact_form_field">
+        <div class="contact_form_generic_field">
           <label for="phone_number">Email address:</label>
           <input type="tel" id="phone_number" name="phone_number">
         </div>
-        <div class="contact_existing_tags_field">
-          <p><span>Tags:</span><span>{{tags}}</span></p>
+        <div class="contact_form_tags_field">
+          {{> form_tags_partial this}}
         </div>
-        {{> add_tag_partial}}
-        {{> form_submit_cancel_partial}}
+        <div class="contact_form_submit_cancel_field">
+          {{> form_submit_cancel_partial}}
+        </div>
       </form>
     </div>
   </script>
   <script type="text/x-handlebars-template" data-group="template" id="show_contacts_header_template">
     <div class="show_contacts_header">
       <button type="button" class="header_button">Add Contact</button>
-      <button type="button" class="header_button">Edit Tags</button>
       <input type="search" id="search" name="search" placeholder="Search">
     </div>
   </script>
@@ -99,12 +102,6 @@
     <div class="show_form_header">
       <h2>{{header_title}}</h2>
     </div>
-  </script>
-  <script type="text/x-handlebars-template" data-group="template" id="tag_form_template">
-    <form class="tag_form">
-      {{> add_tag_partial}}
-      {{> form_submit_cancel_partial}}
-    </form>
   </script>
 </body>
 </html>

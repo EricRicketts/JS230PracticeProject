@@ -40,14 +40,14 @@ describe('Contact Model', function () {
           full_name: "Naveed Fida",
           email: "nf@example.com",
           phone_number: "12345678901",
-          tags: "work,friend"
+          tags: "work,friend,programmer"
         },
         {
           id: 2,
           full_name: "Victor Reyes",
           email: "vpr@example.com",
           phone_number: "09876543210",
-          tags: "work,friend"
+          tags: "work,friend,scientist"
         },
         {
           id: 3,
@@ -120,11 +120,34 @@ describe('Contact Model', function () {
     });
 
     describe('Tag Behavior', function () {
+      let contactObject, secondContactObject;
+      beforeEach(() => {
+        contactObject = {
+          id: 1,
+          full_name: "Naveed Fida",
+          email: "nf@example.com",
+          phone_number: "12345678901",
+          tags: ['friend', 'work'],
+          available_tags: ['programmer', 'relative', 'scientist']
+        };
+        secondContactObject = {
+          id: 2,
+          full_name: "Elmer Fudd",
+          email: "elmer_fudd@warnerbros.com",
+          phone_number: "4443210011",
+          tags: 'friend,work'
+        }
+      });
+
       it('should store all of the tag information', function () {
-        expected = ['friend', 'relative', 'work'];
+        expected = ['friend', 'programmer', 'relative', 'scientist', 'work'];
         expect(contacts.allUniqueTags).to.deep.equal(expected);
       });
 
+      it('should extract the available tags from the contact information', function () {
+        expected = ['programmer', 'relative', 'scientist'];
+        expect(contacts.extractAvailableTags(secondContactObject)).to.deep.equal(expected);
+      });
       it('should return all the contacts with a given tag', function () {
         expected = [
           {
@@ -132,14 +155,14 @@ describe('Contact Model', function () {
             full_name: "Naveed Fida",
             email: "nf@example.com",
             phone_number: "12345678901",
-            tags: "work,friend"
+            tags: "work,friend,programmer"
           },
           {
             id: 2,
             full_name: "Victor Reyes",
             email: "vpr@example.com",
             phone_number: "09876543210",
-            tags: "work,friend"
+            tags: "work,friend,scientist"
           },
           {
             id: 3,
@@ -156,17 +179,30 @@ describe('Contact Model', function () {
         expect(contacts.findContactsWithTag('foo')).to.deep.equal([]);
       });
 
-      it('should add a tag to a contact that is not a duplicate tag', function () {
-        let contactObject = {
-          id: 1,
-          full_name: "Naveed Fida",
-          email: "nf@example.com",
-          phone_number: "12345678901",
-          tags: "work,friend"
-        };
-        expected = [ { tags: "work,friend,programmer" }, ['friend', 'programmer', 'relative', 'work']];
-        results = [contacts.addTag(contactObject, 'programmer'), contacts.allUniqueTags];
+      it('add a new tag if not in contact tags or available tags', function () {
+        expected = ['friend', 'work', 'believer'];
+        contacts.addNewTag(contactObject, 'believer');
+        expect(contactObject.tags).to.deep.equal(expected);
+      });
+
+      it('should return false if adding a tag in contact tags', function () {
+        expect(contacts.addNewTag(contactObject, 'friend')).to.equal(false);
+      });
+
+      it('should return false if adding a tag in available tags', function () {
+        expect(contacts.addNewTag(contactObject, 'relative')).to.equal(false);
+      });
+
+      it('should transfer a tag from available tags to contact tags', function () {
+        expected = [['friend', 'work', 'scientist'], ['programmer', 'relative']];
+        contacts.transferAvailableTagToContact(contactObject, 'scientist');
+        results = [contactObject.tags, contactObject.available_tags];
         expect(results).to.deep.equal(expected);
+      });
+
+      it('should format contact and available tags for the view', function () {
+        expected = { tags: ['friend', 'work'], available_tags: ['programmer', 'relative', 'scientist'] }
+        expect(contacts.formatTagsForEdit(secondContactObject)).to.deep.equal(expected);
       });
     });
   });

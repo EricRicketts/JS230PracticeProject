@@ -1,14 +1,16 @@
 let ContactsModel = {
-  addTag: function(contactObject, newTag) {
-    let contactObjectTags = contactObject.tags.split(',').map(tag => tag.trim());
-    if (!this.allUniqueTags.includes(newTag)) {
-      this.allUniqueTags.push(newTag)
-      this.allUniqueTags.sort();
-    }
-    return contactObjectTags.includes(newTag) ? false : { tags: this.formatContactTags(contactObjectTags, newTag) };
+  addNewTag: function(contactObject, newTag) {
+    let tagTaken = contactObject.tags.includes(newTag) || contactObject.available_tags.includes(newTag);
+    return tagTaken ? false : contactObject.tags.push(newTag);
   },
   contactHasTag: function(contactObject, searchTag) {
-    return contactObject.tags.split(',').map(tag => tag.trim()).includes(searchTag);
+    return this.tagStringToArray(contactObject).includes(searchTag);
+  },
+  extractAvailableTags: function(contactObject) {
+    return this.allUniqueTags.reduce((availableTags, globalTag) => {
+      if (!this.tagStringToArray(contactObject).includes(globalTag)) { availableTags.push(globalTag); }
+      return availableTags;
+    }, []).sort();
   },
   findContactsWithTag: function(searchTag) {
     return this.allContacts.filter(contactObject => {
@@ -18,9 +20,12 @@ let ContactsModel = {
   formattedAllContactData: function() {
     return { contacts: this.allContacts };
   },
-  formatContactTags(contactObjectTags, newTag = false) {
+  formatTags(contactObjectTags, newTag = false) {
     if (newTag) { contactObjectTags.push(newTag) }
     return contactObjectTags.join(',');
+  },
+  formatTagsForEdit: function(contactObject) {
+    return { tags: this.tagStringToArray(contactObject), available_tags: this.extractAvailableTags(contactObject) };
   },
   noSearchResults: function(searchString) {
     return `There are no contacts with the letters \'${searchString}\'`;
@@ -33,13 +38,18 @@ let ContactsModel = {
     this.allContacts = serverData;
   },
   storeAllUniqueTagData(serverData) {
-    this.allUniqueTags = [];
-    const re = /\s*,\s*/;
-    let allTags = serverData.map(contact => contact.tags && contact.tags.split(re)).flat();
-    allTags.forEach(tag => {
-      if (tag && !this.allUniqueTags.includes(tag)) { this.allUniqueTags.push(tag) }
-    });
-    this.allUniqueTags.sort();
+    let allTags = serverData.map(contact => contact.tags && this.tagStringToArray(contact)).flat();
+    this.allUniqueTags = allTags.reduce((allUniqueTags, tag) => {
+      if (tag && !allUniqueTags.includes(tag)) { allUniqueTags.push(tag); }
+      return allUniqueTags;
+    }, []).sort();
+  },
+  tagStringToArray: function(contactObject) {
+    return contactObject.tags.split(',').map(tag => tag.trim());
+  },
+  transferAvailableTagToContact: function(contactObject, availableTag) {
+    let indexOfAvailableTag = contactObject.available_tags.indexOf(availableTag);
+    contactObject.tags.push(contactObject.available_tags.splice(indexOfAvailableTag, 1)[0]);
   },
   init: function() {
     this.addContactHeader = 'Create Contact';

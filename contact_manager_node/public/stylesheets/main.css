@@ -20,36 +20,36 @@ button {
   display: block;
 }
 
-header {
+header#page_header {
   background-color: #6f5499;
   text-align: center;
   padding: 30px 0;
 }
 
-header a {
+header#page_header a {
   display: block;
   text-decoration: none;
   color: white;
   margin-bottom: 10px;
 }
 
-header a h1 {
+header#page_header a h1 {
   font-weight: 500;
 }
 
-header p {
+header#page_header p {
   font-size: 20px;
   font-weight: 300;
   color: #cdbfe3;
 }
 
-main >  {
-  width: 50%;
+main > header#content_heading, main > section#content {
+  width: 80%;
   margin: auto;
 }
 
-.all_contacts_header {
-  height: 100px;
+.show_contacts_header {
+  height: 80px;
   display: flex;
   justify-content: space-evenly;
   align-items: center;
@@ -59,7 +59,7 @@ main >  {
   margin-bottom: 30px;
 }
 
-.all_contacts_header button {
+.show_contacts_header button {
   width: 140px;
   height: 45px;
   border: 1px solid #6f5499;
@@ -71,8 +71,8 @@ main >  {
   cursor: pointer;
 }
 
-.all_contacts_header input {
-  width: 200px;
+.show_contacts_header input {
+  width: 250px;
   height: 40px;
   padding: 5px;
   color: #cdbfe3;
@@ -84,10 +84,6 @@ main >  {
 .all_contacts {
   display: flex;
   flex-wrap: wrap;
-}
-
-.contact_id {
-  display: none;
 }
 
 .single_contact {
@@ -116,7 +112,7 @@ main >  {
   margin-top: 15px;
 }
 
-.single_contact_buttons button {
+.single_contact_buttons > button {
   display: inline-block;
   width: 50px;
   height: 30px;
@@ -129,11 +125,6 @@ main >  {
   cursor: pointer;
 }
 
-.single_contact_buttons button > span {
-  display: inline-block;
-}
-
 .single_contact_buttons button:first-of-type {
   margin-right: 10px;
 }
-

@@ -5,13 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
-  <script src="/javascripts/jquery.js"></script>
-  <script src="/javascripts/handlebars.js"></script>
+  <link rel="stylesheet" href="./stylesheets/main.css">
+  <script type="module" src="./javascripts/contact_app.js"></script>
+  <script src="./javascripts/jquery.js"></script>
+  <script src="./javascripts/handlebars.js"></script>
 </head>
   <body>
   <header id="page_header">
     <a href="/api/contacts" data-method="GET"><h1>Contact Manager</h1></a>
-    <p>Using Localstorage, RequireJS, and HandlebarJS</p>
+    <p>Using Backbone.js, Localstorage, RequireJS, Handlebars.js, and Bootstrap</p>
   </header>
   <main>
     <header id="content_heading"></header>
@@ -44,8 +46,8 @@
       <input type="text">
     </div>
   </script>
-  <script type="text/x-handlebars-template" data-group="partial" id="single_contact_data_partial">
-    <div class="single_contact_data">
+  <script type="text/x-handlebars-template" data-group="partial" id="single_contact_partial">
+    <div class="single_contact">
       <h3>{{full_name}}</h3>
       <dl>
         <dt>Phone Number:</dt>
@@ -55,7 +57,7 @@
         <dt>Tags:</dt>
         <dl>{{tags}}</dl>
       </dl>
-      <div>
+      <div class="single_contact_buttons">
         <button type="button" data-id="{{id}}">Edit</button>
         <button type="button" data-id="{{id}}"">Delete</button>
       </div>
@@ -64,7 +66,7 @@
   <script type="text/x-handlebars-template" data-group="template" id="all_contacts_template">
     <div class="all_contacts">
       {{#each contacts}}
-        {{> single_contact_partial this}}
+        {{> singleContactPartial this}}
       {{/each}}
     </div>
   </script>
@@ -84,10 +86,10 @@
           <input type="tel" id="phone_number" name="phone_number">
         </div>
         <div class="contact_form_tags_field">
-          {{> form_tags_partial this}}
+          {{> formTagsPartial this}}
         </div>
         <div class="contact_form_submit_cancel_field">
-          {{> form_submit_cancel_partial}}
+          {{> formSubmitCancelPartial}}
         </div>
       </form>
     </div>

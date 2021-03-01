@@ -55,7 +55,13 @@
         <dt>Email:</dt>
         <dd>{{email}}</dd>
         <dt>Tags:</dt>
-        <dl>{{tags}}</dl>
+        <dl class="single_contact_tags">
+          <select name="contact_tags" id="contact_tags">
+            {{#each tags as |tag|}}
+              <option value={{tag}}>{{tag}}</option>
+            {{/each}}
+          </select>
+        </dl>
       </dl>
       <div class="single_contact_buttons">
         <button type="button" data-id="{{id}}">Edit</button>

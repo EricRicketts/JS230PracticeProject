@@ -4,18 +4,20 @@ let ContactsModel = {
     return tagTaken ? false : contactObject.tags.push(newTag);
   },
   contactHasTag: function(contactObject, searchTag) {
-    return this.tagStringToArray(contactObject).includes(searchTag);
+    return contactObject.tags.includes(searchTag);
+  },
+  deepCopyServerData: function(serverData) {
+    return JSON.parse(JSON.stringify(serverData));
   },
   extractAvailableTags: function(contactObject) {
+    let contactTags = contactObject.tags;
     return this.allUniqueTags.reduce((availableTags, globalTag) => {
-      if (!this.tagStringToArray(contactObject).includes(globalTag)) { availableTags.push(globalTag); }
+      if (!contactTags.includes(globalTag)) { availableTags.push(globalTag); }
       return availableTags;
     }, []).sort();
   },
   findContactsWithTag: function(searchTag) {
-    return this.allContacts.filter(contactObject => {
-      return typeof contactObject.tags === 'string' ? this.contactHasTag(contactObject, searchTag) : false;
-    });
+    return this.allContacts.filter(contactObject => this.contactHasTag(contactObject, searchTag));
   },
   formattedAllContactData: function() {
     return { contacts: this.allContacts };
@@ -25,7 +27,7 @@ let ContactsModel = {
     return contactObjectTags.join(',');
   },
   formatTagsForEdit: function(contactObject) {
-    return { tags: this.tagStringToArray(contactObject), available_tags: this.extractAvailableTags(contactObject) };
+    return { tags: contactObject.tags, available_tags: this.extractAvailableTags(contactObject) };
   },
   noSearchResults: function(searchString) {
     return `There are no contacts with the letters \'${searchString}\'`;
@@ -34,18 +36,24 @@ let ContactsModel = {
     let searchResults = this.allContacts.filter(contact => contact.full_name.includes(searchString));
     return { contacts: searchResults };
   },
-  storeAllContactData(serverData) {
-    this.allContacts = serverData;
+  storeAllContactData(serverContactData) {
+    let formattedContactData = this.deepCopyServerData(serverContactData).map(contact => {
+      contact.tags = contact.tags ? this.tagStringToArray(contact) : [contact.tags];
+      return contact;
+    });
+    this.allContacts = formattedContactData;
   },
   storeAllUniqueTagData(serverData) {
-    let allTags = serverData.map(contact => contact.tags && this.tagStringToArray(contact)).flat();
+    let allTags = this.deepCopyServerData(serverData).map(contact => {
+      return contact.tags && this.tagStringToArray(contact)
+    }).flat();
     this.allUniqueTags = allTags.reduce((allUniqueTags, tag) => {
       if (tag && !allUniqueTags.includes(tag)) { allUniqueTags.push(tag); }
       return allUniqueTags;
     }, []).sort();
   },
   tagStringToArray: function(contactObject) {
-    return contactObject.tags.split(',').map(tag => tag.trim());
+    return contactObject.tags.split(',').map(tag => tag.trim()).sort();
   },
   transferAvailableTagToContact: function(contactObject, availableTag) {
     let indexOfAvailableTag = contactObject.available_tags.indexOf(availableTag);

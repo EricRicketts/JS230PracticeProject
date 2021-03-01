@@ -1,5 +1,6 @@
 import { expect } from 'chai';
 import { ContactsModel } from "../../public/javascripts/model/contacts_model";
+import { ContactModelData, FormattedContactModelData } from "./contact_model_data";
 
 describe('Contact Model', function () {
   let contacts, expected, results;
@@ -32,63 +33,21 @@ describe('Contact Model', function () {
   });
 
   describe('Contact And Tag Behavior', function () {
-    let serverContactData;
+    let serverContactData, formattedServerContactData;
     beforeEach(() => {
-      serverContactData = [
-        {
-          id: 1,
-          full_name: "Naveed Fida",
-          email: "nf@example.com",
-          phone_number: "12345678901",
-          tags: "work,friend,programmer"
-        },
-        {
-          id: 2,
-          full_name: "Victor Reyes",
-          email: "vpr@example.com",
-          phone_number: "09876543210",
-          tags: "work,friend,scientist"
-        },
-        {
-          id: 3,
-          full_name: "Pete Hanson",
-          email: "ph@example.com",
-          phone_number: "54321098761",
-          tags: "work"
-        },
-        {
-          id: 4,
-          full_name: "Eric Ricketts",
-          email: "eric_ricketts@icloud.com",
-          phone_number: "9194495529",
-          tags: null
-        },
-        {
-          id: 5,
-          full_name: "Wendy Ricketts",
-          email: "wendy_ricketts@icloud.com",
-          phone_number: "9194495456",
-          tags: "relative"
-        },
-        {
-          id: 6,
-          full_name: "Marilyn Ricketts",
-          email: "marilynricketts@icloud.com",
-          phone_number: "7036085704",
-          tags: "relative"
-        }
-      ];
+      serverContactData = JSON.parse(JSON.stringify(ContactModelData));
+      formattedServerContactData = JSON.parse(JSON.stringify(FormattedContactModelData));
       contacts.storeAllContactData(serverContactData);
       contacts.storeAllUniqueTagData(serverContactData);
     });
 
     describe('Contact Behavior', function () {
       it('should store all contact information', function () {
-        expect(contacts.allContacts).to.deep.equal(serverContactData);
+        expect(contacts.allContacts).to.deep.equal(formattedServerContactData);
       });
       
       it('should put the all contacts data in a format prepared for viewing', function () {
-        expected = { contacts : serverContactData };
+        expected = { contacts : formattedServerContactData };
         expect(contacts.formattedAllContactData()).to.deep.equal(expected);
       });
 
@@ -99,14 +58,14 @@ describe('Contact Model', function () {
               full_name: "Eric Ricketts",
               email: "eric_ricketts@icloud.com",
               phone_number: "9194495529",
-              tags: null
+              tags: [null]
             },
             {
               id: 6,
               full_name: "Marilyn Ricketts",
               email: "marilynricketts@icloud.com",
               phone_number: "7036085704",
-              tags: "relative"
+              tags: ["relative"]
             }
           ]
         }
@@ -135,7 +94,7 @@ describe('Contact Model', function () {
           full_name: "Elmer Fudd",
           email: "elmer_fudd@warnerbros.com",
           phone_number: "4443210011",
-          tags: 'friend,work'
+          tags: ['friend', 'work']
         }
       });
 
@@ -155,21 +114,21 @@ describe('Contact Model', function () {
             full_name: "Naveed Fida",
             email: "nf@example.com",
             phone_number: "12345678901",
-            tags: "work,friend,programmer"
+            tags: ["friend", "programmer" ,"work"]
           },
           {
             id: 2,
             full_name: "Victor Reyes",
             email: "vpr@example.com",
             phone_number: "09876543210",
-            tags: "work,friend,scientist"
+            tags: ["friend", "scientist", "work"]
           },
           {
             id: 3,
             full_name: "Pete Hanson",
             email: "ph@example.com",
             phone_number: "54321098761",
-            tags: "work"
+            tags: ["work"]
           }
         ];
         expect(contacts.findContactsWithTag('work')).to.deep.equal(expected);

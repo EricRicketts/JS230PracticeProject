@@ -1,0 +1,36 @@
+This is the hardest part of the design, trying to figure out how everything fits together.
+What do we currently have?
+
+1.  A view, I tried to make the view 'as dumb' as possible, its only goal is to display the data given to it.
+2.  A model:
+    1.  The model formats the data necessary for the view.
+    2.  The model performs the required operations on a given data set, i.e., finding contacts with a common tag.
+    3.  The model might be required to cache data, I will investigate this.
+
+
+Controller Design - As I thought from reading some background information, the controller ties the model and the
+view together.  So, when an action is initiated the controller takes change calls the necessary model behavior and
+passes any data from the model to the view.  In this case, I also have to deal with the event handlers, so how does
+one incorporate the event handlers into the Controller(s)?
+
+I studied the design from Kyle Ledoux's design, in terms of a controller solution, what Kyle did was to
+have one Master Controller which was basically his Contact Application.  He had an Events Handler class which in
+the Contact Application he bound to the Contact Application itself, thereby enabling him to call any
+method of the Contact Application from within the callback of the bound Event Handler.
+
+I can split up this master controller into separate controller actions.  During the initialization process the main
+application can bind the application object to each controller.  I need to do this so that the given controller has
+access to the model and the view.
+
+To begin with I am going to stick with XMLHttpRequest because it will take too much time for me to learn about
+Promises and async/await.  I will study these in detail after I complete Launch School.
+
+What behavior should all of the controllers share in common?
+1.  They need to be bound to the application object so they can access the model and the view.
+2.  They are essentially going to be event handlers, as this is the only way I know how to do it.
+3.  I am going to use caching of the contacts and tags, so the controllers might have control the model cache
+
+DisplayContactsController
+1.  Fetches all contacts
+2.  populates the contacts and tags caches
+3.  displays the home page with all contacts

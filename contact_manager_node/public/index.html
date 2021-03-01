@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <link rel="stylesheet" href="./stylesheets/main.css">
-  <script type="module" src="./javascripts/contact_app.js"></script>
+  <script type="module" src="./javascripts/contacts_app.js"></script>
   <script src="./javascripts/jquery.js"></script>
   <script src="./javascripts/handlebars.js"></script>
 </head>
@@ -92,6 +92,11 @@
           {{> formSubmitCancelPartial}}
         </div>
       </form>
+    </div>
+  </script>
+  <script type="text/x-handlebars-template" data-group="template" id="no_contacts_tempalte">
+    <div class="no_contacts">
+      <h2>There are no contacts</h2>
     </div>
   </script>
   <script type="text/x-handlebars-template" data-group="template" id="show_contacts_header_template">

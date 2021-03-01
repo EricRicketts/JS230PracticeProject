@@ -24,12 +24,22 @@ let ContactsView = {
   removeAllChildren: function(node) {
     while (node.firstChild) { node.removeChild(node.lastChild); }
   },
+  removeMainHeaderAndMainContent: function() {
+    this.removeAllChildren(this.mainHeader);
+    this.removeAllChildren(this.mainContent);
+  },
   replacer: function(match) {
     return match[1].toUpperCase();
   },
-  showExistingContactsAndHeader: function(dataFromModel) {
+  showAllContactsAndHeader: function(dataFromModel) {
+    this.removeMainHeaderAndMainContent();
     this.insertContactsHeader();
     this.mainContent.insertAdjacentHTML('afterbegin', this.allContactsTemplate(dataFromModel));
+  },
+  showNoContactsAndHeader: function() {
+    this.removeMainHeaderAndMainContent();
+    this.insertContactsHeader();
+    this.mainContent.insertAdjacentHTML('afterbegin', this.noContactsTemplate());
   },
   storeMainHeaderAndContentElement: function() {
     this.mainHeader = this.document.getElementById('content_heading');

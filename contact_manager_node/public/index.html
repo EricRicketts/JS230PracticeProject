@@ -57,8 +57,9 @@
         <dt>Tags:</dt>
         <dl class="single_contact_tags">
           <select name="contact_tags" id="contact_tags">
+            <option value="">View All Tags</option>
             {{#each tags as |tag|}}
-              <option value={{tag}}>{{tag}}</option>
+              <option value={{tag}} disabled>{{tag}}</option>
             {{/each}}
           </select>
         </dl>

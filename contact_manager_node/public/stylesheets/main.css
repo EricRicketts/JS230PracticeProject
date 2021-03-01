@@ -108,6 +108,23 @@ main > header#content_heading, main > section#content {
   padding: 2px 0;
 }
 
+.single_contact_tags select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  width: 150px;
+  margin-top: 5px;
+  border: 1px solid #777777;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 5px 5px;
+  background-color: #ffffff;
+}
+
+.single_contact_tags select:focus {
+  outline: none;
+}
+
 .single_contact_buttons {
   margin-top: 15px;
 }

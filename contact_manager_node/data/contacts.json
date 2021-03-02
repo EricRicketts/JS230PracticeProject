@@ -28,11 +28,11 @@
     "tags": null
   },
   {
-  "id": 5,
-  "full_name": "Wendy Ricketts",
-  "email": "wendy_ricketts@icloud.com",
-  "phone_number": "9194495456",
-  "tags": "spouse"
+    "id": 5,
+    "full_name": "Wendy Ricketts",
+    "email": "wendy_ricketts@icloud.com",
+    "phone_number": "9194495456",
+    "tags": "spouse"
   },
   {
     "id": 6,
@@ -47,5 +47,19 @@
     "email": "myronricketts@icloud.com",
     "phone_number": "7034510235",
     "tags": "relative"
+  },
+  {
+    "id": 8,
+    "full_name": "Elmer Fudd",
+    "email": "elmer_fudd@warnbros.com",
+    "phone_number": "5411450087",
+    "tags": "entertainer"
+  },
+  {
+    "id": 9,
+    "full_name": "Bugs Bunny",
+    "email": "bugs_bunny@warnbros.com",
+    "phone_number": "4788741166",
+    "tags": "entertainer"
   }
 ]

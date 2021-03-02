@@ -183,7 +183,8 @@ main {
   margin-bottom: 10px;
 }
 
-.contact_form_generic_field label {
+.contact_form_generic_field label, .contact_tags label,
+.available_tags_for_contact label {
   display: inline-block;
   float: left;
   padding-top: 5px;
@@ -192,16 +193,17 @@ main {
   font-size: 15px;
   font-weight: 500;
   margin-right: 30px;
-  line-height: 2;
+  line-height: 2.25;
 }
 
-.contact_form_generic_field input {
+.contact_form_generic_field input, .contact_tags select,
+.available_tags_for_contact select {
   margin-top: 5px;
   margin-bottom: 5px;
   display: inline-block;
   vertical-align: middle;
   width: 50%;
-  height: 30px;
+  height: 35px;
   border: 1px solid lightgray;
   border-radius: 3px;
   padding: 5px 10px;
@@ -215,4 +217,9 @@ main {
 
 .hidden {
   display: none;
+}
+
+.contact_tags select, .available_tags_for_contact select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
 }

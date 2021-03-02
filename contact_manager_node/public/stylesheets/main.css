@@ -16,6 +16,10 @@ h1 {
   font-size: 36px;
 }
 
+h2 {
+  font-size: 32px;
+}
+
 button {
   display: block;
 }
@@ -43,7 +47,7 @@ header#page_header p {
   color: #cdbfe3;
 }
 
-main > header#content_heading, main > section#content {
+main {
   width: 80%;
   margin: auto;
 }
@@ -148,4 +152,67 @@ main > header#content_heading, main > section#content {
 
 .single_contact_buttons button:nth-of-type(2) {
   width: 60px;
+}
+
+.show_form_header, .edit_add_contact_form {
+  display: flex;
+  justify-content: center;
+}
+
+.show_form_header {
+  padding-top: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid gainsboro;
+}
+
+.show_form_header > h2 {
+  font-weight: 400;
+}
+
+.edit_add_contact_form {
+  padding-top: 15px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid gainsboro;
+}
+
+.edit_add_contact_form > form {
+  width: 100%;
+}
+
+.contact_form_generic_field {
+  margin-bottom: 10px;
+}
+
+.contact_form_generic_field label {
+  display: inline-block;
+  float: left;
+  padding-top: 5px;
+  text-align: right;
+  width: 40%;
+  font-size: 15px;
+  font-weight: 500;
+  margin-right: 30px;
+  line-height: 2;
+}
+
+.contact_form_generic_field input {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  display: inline-block;
+  vertical-align: middle;
+  width: 50%;
+  height: 30px;
+  border: 1px solid lightgray;
+  border-radius: 3px;
+  padding: 5px 10px;
+}
+
+.contact_form_generic_field input:focus {
+  border-color: rgba(137, 196, 244, 0.8);
+  box-shadow: 0 1px 1px rgba(137, 196, 244, 0.075) inset, 0 0 8px rgba(137, 196, 244, 0.6);
+  outline: 0 none;
+}
+
+.hidden {
+  display: none;
 }

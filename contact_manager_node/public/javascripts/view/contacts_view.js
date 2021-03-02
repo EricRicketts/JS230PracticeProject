@@ -31,6 +31,11 @@ let ContactsView = {
   replacer: function(match) {
     return match[1].toUpperCase();
   },
+  showAddContactFormAndHeader: function(headerData, tagData) {
+    this.removeMainHeaderAndMainContent();
+    this.mainHeader.insertAdjacentHTML('afterbegin', this.showFormHeaderTemplate(headerData));
+    this.mainContent.insertAdjacentHTML("afterbegin", this.editAddContactFormTemplate(tagData));
+  },
   showAllContactsAndHeader: function(dataFromModel) {
     this.removeMainHeaderAndMainContent();
     this.insertContactsHeader();

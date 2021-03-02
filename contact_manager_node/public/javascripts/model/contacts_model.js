@@ -6,8 +6,8 @@ let ContactsModel = {
   contactHasTag: function(contactObject, searchTag) {
     return contactObject.tags.includes(searchTag);
   },
-  deepCopyServerData: function(serverData) {
-    return JSON.parse(JSON.stringify(serverData));
+  deepCopyServerData: function(data) {
+    return JSON.parse(JSON.stringify(data));
   },
   extractAvailableTags: function(contactObject) {
     let contactTags = contactObject.tags;
@@ -19,12 +19,19 @@ let ContactsModel = {
   findContactsWithTag: function(searchTag) {
     return this.allContacts.filter(contactObject => this.contactHasTag(contactObject, searchTag));
   },
-  formattedAllContactData: function() {
-    return { contacts: this.allContacts };
-  },
   formatTags(contactObjectTags, newTag = false) {
     if (newTag) { contactObjectTags.push(newTag) }
     return contactObjectTags.join(',');
+  },
+  formattedAddContactHeader: function() {
+    return { header_title: this.addContactHeader };
+  },
+  formattedAllContactData: function() {
+    return { contacts: this.allContacts };
+  },
+  formattedTagsForAddContact: function() {
+    let availableTags = this.deepCopyServerData(this.allUniqueTags);
+    return { tags: [], available_tags: availableTags }
   },
   formatTagsForEdit: function(contactObject) {
     return { tags: contactObject.tags, available_tags: this.extractAvailableTags(contactObject) };

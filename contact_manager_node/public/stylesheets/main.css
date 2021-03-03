@@ -180,11 +180,11 @@ main {
 }
 
 .contact_form_generic_field {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-right: 20%;
 }
 
-.contact_form_generic_field label, .contact_tags label,
-.available_tags_for_contact label {
+.contact_form_generic_field label {
   display: inline-block;
   float: left;
   padding-top: 5px;
@@ -196,8 +196,7 @@ main {
   line-height: 2.25;
 }
 
-.contact_form_generic_field input, .contact_tags select,
-.available_tags_for_contact select {
+.contact_form_generic_field input, .contact_form_generic_field select {
   margin-top: 5px;
   margin-bottom: 5px;
   display: inline-block;
@@ -209,7 +208,7 @@ main {
   padding: 5px 10px;
 }
 
-.contact_form_generic_field input:focus {
+.contact_form_generic_field input:focus, .contact_form_generic_field select:focus {
   border-color: rgba(137, 196, 244, 0.8);
   box-shadow: 0 1px 1px rgba(137, 196, 244, 0.075) inset, 0 0 8px rgba(137, 196, 244, 0.6);
   outline: 0 none;
@@ -219,7 +218,32 @@ main {
   display: none;
 }
 
-.contact_tags select, .available_tags_for_contact select {
+.contact_form_generic_field select {
   -moz-appearance: none;
   -webkit-appearance: none;
+}
+
+.contact_form_submit_cancel_field {
+  margin-top: 20px;
+  width: 70%;
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 3.8%;
+}
+
+.contact_form_submit_cancel_field input, .contact_form_submit_cancel_field button {
+  display: inline-block;
+  width: 25%;
+  height: 45px;
+  border: 1px solid #6f5499;
+  color: #6f5499;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: Transparent;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.contact_form_submit_cancel_field button {
+  margin-left: 5%;
 }

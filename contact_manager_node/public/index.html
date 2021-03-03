@@ -22,10 +22,10 @@
 
   <script type="text/x-handlebars-template" data-group="partial" id="form_submit_cancel_partial">
       <input type="submit" value="Submit">
-      <a href="" data-type="getAllContacts">Cancel</a>
+      <button type="button" data-type="getAllContacts">Cancel</button>
   </script>
   <script type="text/x-handlebars-template" data-group="partial" id="form_tags_partial">
-    <div class="contact_tags">
+    <div class="contact_form_generic_field">
       <label for="tags">Current Tags:</label>
       <select name="tags" id="tags">
         {{#each tags as |tag|}}
@@ -33,7 +33,7 @@
         {{/each}}
       </select>
     </div>
-    <div class="available_tags_for_contact">
+    <div class="contact_form_generic_field">
       <label for="available_tags">Available Tags:</label>
       <select name="available_tags" id="available_tags">
         {{#each available_tags as |available_tag|}}

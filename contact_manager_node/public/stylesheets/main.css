@@ -223,8 +223,30 @@ main {
   -webkit-appearance: none;
 }
 
+.contact_form_generic_field_button {
+  clear: both;
+  width: 74.5%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.contact_form_generic_field_button button {
+  display: inline-block;
+  width: 60px;
+  height: 45px;
+  border: 1px solid #6f5499;
+  color: #6f5499;
+  border-radius: 5px;
+  font-size: 20px;
+  background-color: Transparent;
+  padding: 5px;
+  cursor: pointer;
+}
+
 .contact_form_submit_cancel_field {
-  margin-top: 20px;
+  clear: both;
+  margin-top: 30px;
   width: 70%;
   display: flex;
   justify-content: flex-end;

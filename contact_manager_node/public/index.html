@@ -34,16 +34,22 @@
       </select>
     </div>
     <div class="contact_form_generic_field">
-      <label for="available_tags">Available Tags:</label>
+      <label for="available_tags">Add From Available Tags:</label>
       <select name="available_tags" id="available_tags">
         {{#each available_tags as |available_tag|}}
           <option value="{{available_tag}}">{{available_tag}}</option>
         {{/each}}
       </select>
     </div>
+    <div class="contact_form_generic_field_button">
+      <button type="button" data-type="transferTag">Add</button>
+    </div>
     <div class="contact_form_generic_field">
-      <label for="tags">Add Tag:</label>
+      <label for="tags">Add New Tag:</label>
       <input type="text">
+    </div>
+    <div class="contact_form_generic_field_button">
+      <button type="button" data-type="addTag">Add</button>
     </div>
   </script>
   <script type="text/x-handlebars-template" data-group="partial" id="single_contact_partial">
@@ -95,9 +101,7 @@
           <input type="tel" id="phone_number" name="phone_number">
           <p class="hidden">Please enter the phone number field.</p>
         </div>
-        <div class="contact_form_tags_field">
-          {{> formTagsPartial this}}
-        </div>
+        {{> formTagsPartial this}}
         <div class="contact_form_submit_cancel_field">
           {{> formSubmitCancelPartial}}
         </div>

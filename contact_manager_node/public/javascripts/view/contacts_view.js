@@ -1,4 +1,13 @@
 let ContactsView = {
+  errorMessage: function(inputElement, errorStr) {
+    let errorParagraph = inputElement.nextElementSibling;
+    this.removeAllChildren(errorParagraph);
+    let errorText = this.document.createTextNode(errorStr);
+    errorParagraph.appendChild(errorText);
+    errorParagraph.classList.remove('hidden');
+    errorParagraph.classList.add('error_text');
+    inputElement.classList.add('error_field');
+  },
   initializeAndCompileTemplates: function() {
     let allTemplates = Array.from(this.document.querySelectorAll('[data-group=template]'));
     allTemplates.forEach(template => {
@@ -23,6 +32,14 @@ let ContactsView = {
   },
   removeAllChildren: function(node) {
     while (node.firstChild) { node.removeChild(node.lastChild); }
+  },
+  removeErrorMessage(inputElement) {
+    let nextElement = inputElement.nextElementSibling;
+    if (nextElement && nextElement.tagName === 'P') {
+      this.removeAllChildren(nextElement);
+      nextElement.classList.remove('error_text');
+      inputElement.classList.remove('error_field');
+    }
   },
   removeMainHeaderAndMainContent: function() {
     this.removeAllChildren(this.mainHeader);

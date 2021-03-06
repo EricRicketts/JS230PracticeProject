@@ -21,8 +21,8 @@
   </main>
 
   <script type="text/x-handlebars-template" data-group="partial" id="form_submit_cancel_partial">
-      <input type="submit" value="Submit">
-      <button type="button" data-type="getAllContacts">Cancel</button>
+    <button type="button" id="add_contact_button">Submit</button>
+    <button type="button" data-type="getAllContacts">Cancel</button>
   </script>
   <script type="text/x-handlebars-template" data-group="partial" id="form_tags_partial">
     <div class="contact_form_generic_field">
@@ -45,8 +45,9 @@
       <button type="button" data-type="transferTag">Add</button>
     </div>
     <div class="contact_form_generic_field">
-      <label for="tags">Add New Tag:</label>
-      <input type="text">
+      <label for="new_tag">Add New Tag:</label>
+      <input type="text" id="new_tag">
+      <p class="hidden"></p>
     </div>
     <div class="contact_form_generic_field_button">
       <button type="button" data-type="addTag">Add</button>
@@ -84,22 +85,25 @@
     </div>
   </script>
   <script type="text/x-handlebars-template" data-group="template" id="edit_add_contact_form_template">
-    <div class="edit_add_contact_form">
-      <form>
+    <div class="form_container">
+      <form id="edit_add_contact_form" novalidate>
         <div class="contact_form_generic_field">
           <label for="full_name">Full name:</label>
-          <input type="text" id="full_name" name="full_name">
-          <p class="hidden">Please enter the name field.</p>
+          <input type="text" id="full_name" name="full_name" placeholder="Elmer Fudd"
+                 pattern="\s*([a-zA-Z]{2,})[a-zA-Z,\.'\- ]*\s*" required>
+          <p class="hidden"></p>
         </div>
         <div class="contact_form_generic_field">
           <label for="email">Email address:</label>
-          <input type="email" id="email" name="email">
-          <p class="hidden">Please enter a valid email field.</p>
+          <input type="email" id="email" name="email" placeholder="elmer_fudd@warnerbros.com"
+                 pattern="^\s*[^\s]+@[^\s]+\s*$" required>
+          <p class="hidden"></p>
         </div>
         <div class="contact_form_generic_field">
           <label for="phone_number">Phone number:</label>
-          <input type="tel" id="phone_number" name="phone_number">
-          <p class="hidden">Please enter the phone number field.</p>
+          <input type="tel" id="phone_number" name="phone_number" placeholder="012345689"
+                 pattern="\s*\d{10}\s*" required>
+          <p class="hidden"></p>
         </div>
         {{> formTagsPartial this}}
         <div class="contact_form_submit_cancel_field">

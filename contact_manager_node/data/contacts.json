@@ -61,5 +61,12 @@
     "email": "bugs_bunny@warnbros.com",
     "phone_number": "4788741166",
     "tags": "entertainer"
+  },
+  {
+    "full_name": "Yosemite Sam",
+    "phone_number": "8903452299",
+    "email": "yosemite_sam@warnerbros.com",
+    "tags": null,
+    "id": 10
   }
 ]

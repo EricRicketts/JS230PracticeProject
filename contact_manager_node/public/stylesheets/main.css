@@ -169,13 +169,13 @@ main {
   font-weight: 400;
 }
 
-.edit_add_contact_form {
+.form_container {
   padding-top: 15px;
   padding-bottom: 40px;
   border-bottom: 1px solid gainsboro;
 }
 
-.edit_add_contact_form > form {
+#edit_add_contact_form {
   width: 100%;
 }
 
@@ -218,6 +218,18 @@ main {
   display: none;
 }
 
+.error_text {
+  color: red;
+  text-align: right;
+  width: 93%;
+}
+
+.error_field {
+  border-color: rgba(240, 52, 52, 0.8);
+  box-shadow: 0 1px 1px rgba(240, 52, 52, 0.075) inset, 0 0 8px rgba(240, 52, 52, 0.6);
+  outline: 0 none;
+}
+
 .contact_form_generic_field select {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -253,7 +265,7 @@ main {
   margin-left: 3.8%;
 }
 
-.contact_form_submit_cancel_field input, .contact_form_submit_cancel_field button {
+.contact_form_submit_cancel_field button {
   display: inline-block;
   width: 25%;
   height: 45px;
@@ -266,6 +278,6 @@ main {
   cursor: pointer;
 }
 
-.contact_form_submit_cancel_field button {
+.contact_form_submit_cancel_field button:nth-of-type(2) {
   margin-left: 5%;
 }

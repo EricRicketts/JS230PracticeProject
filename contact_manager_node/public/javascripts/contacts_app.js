@@ -3,17 +3,19 @@ import { ContactsModel } from "./model/contacts_model.js";
 import { GetAllContactsController } from './controllers/get_all_contacts_contoller.js';
 import { DeleteContactController } from "./controllers/delete_contact_controller.js";
 import { AddContactController } from "./controllers/add_contact_controller.js";
+import { FormErrorController } from "./controllers/form_error_controller.js";
+import { Helpers } from './helpers/helpers.js';
 
 let ContactsApp = {
   deployControllers: function() {
     this.document.addEventListener('click', event => {
-      event.preventDefault();
-      event.stopPropagation();
       let targetElement = event.target;
       if (this.isDeleteContact(targetElement)) {
         this.deleteContactController.deleteContact(targetElement);
-      } else if (this.isAddContact(targetElement)) {
+      } else if (this.isLinkToAddContactForm(targetElement)) {
         this.addContactController.addContactForm(targetElement);
+      } else if (this.isSubmitAddContactForm(targetElement)) {
+        this.addContactController.submitAddContactForm();
       }
     });
   },
@@ -21,12 +23,17 @@ let ContactsApp = {
     this.getAllContactsController = GetAllContactsController.init(contactApp);
     this.deleteContactController = DeleteContactController.init(contactApp);
     this.addContactController = AddContactController.init(contactApp);
-  },
-  isAddContact: function(targetElement) {
-    return targetElement.dataset.type === 'add';
+    this.formErrorController = FormErrorController.init(contactApp);
+    this.helpers = Helpers.init(contactApp);
   },
   isDeleteContact: function(targetElement) {
     return targetElement.dataset.type === 'delete';
+  },
+  isLinkToAddContactForm: function(targetElement) {
+    return targetElement.dataset.type === 'add';
+  },
+  isSubmitAddContactForm: function(targetElement) {
+    return targetElement.id === 'add_contact_button';
   },
   init: function(document) {
     this.document = document;

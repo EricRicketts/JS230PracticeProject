@@ -59,6 +59,9 @@ let ContactsModel = {
       return allUniqueTags;
     }, []).sort();
   },
+  tagIsDuplicate(tagValue) {
+    return this.allUniqueTags.includes(tagValue);
+  },
   tagStringToArray: function(contactObject) {
     return contactObject.tags.split(',').map(tag => tag.trim()).sort();
   },

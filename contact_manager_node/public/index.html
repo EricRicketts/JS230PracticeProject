@@ -28,6 +28,7 @@
     <div class="contact_form_generic_field">
       <label for="tags">Current Tags:</label>
       <select name="tags" id="tags">
+        <option value="">View Added Tags</option>
         {{#each tags as |tag|}}
           <option value="{{tag}}" disabled>{{tag}}</option>
         {{/each}}
@@ -35,7 +36,7 @@
     </div>
     <div class="contact_form_generic_field">
       <label for="available_tags">Add From Available Tags:</label>
-      <select name="available_tags" id="available_tags">
+      <select id="available_tags">
         {{#each available_tags as |available_tag|}}
           <option value="{{available_tag}}">{{available_tag}}</option>
         {{/each}}
@@ -46,7 +47,7 @@
     </div>
     <div class="contact_form_generic_field">
       <label for="new_tag">Add New Tag:</label>
-      <input type="text" id="new_tag">
+      <input type="text" id="new_tag" data-type="newTag" pattern="\s*([a-zA-Z0-9]+)[\w,\.'\- ]*\s*">
       <p class="hidden"></p>
     </div>
     <div class="contact_form_generic_field_button">

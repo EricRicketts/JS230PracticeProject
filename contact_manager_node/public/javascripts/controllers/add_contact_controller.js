@@ -3,13 +3,15 @@ let AddContactController = {
     let headerData = this.app.model.formattedAddContactHeader();
     let addContactTags = this.app.model.formattedTagsForAddContact();
     this.app.view.showAddContactFormAndHeader(headerData, addContactTags);
+    this.form = this.app.document.getElementById('edit_add_contact_form');
+    this.app.helpers.addFocusListeners(this.form);
   },
   buildAndSendRequest: function(form) {
     let addContactXhr = new XMLHttpRequest();
     addContactXhr.open(this.method, this.url);
     addContactXhr.setRequestHeader('Content-Type', 'application/json');
     addContactXhr.responseType = 'json';
-    let jsonData = this.app.helpers.convertDataToJson(new FormData(form));
+    let jsonData = this.app.helpers.convertDataToJson(this.form);
     addContactXhr.send(jsonData);
     addContactXhr.addEventListener('load', event => {
       let response = event.target.response;
@@ -17,9 +19,7 @@ let AddContactController = {
     });
   },
   submitAddContactForm: function() {
-    let form = this.app.document.getElementById('edit_add_contact_form');
-    this.app.helpers.addFocusListeners(form);
-    if (this.verifyAllInputs(form)) { this.buildAndSendRequest(form); }
+    if (this.verifyAllInputs(this.form)) { this.buildAndSendRequest(this.form); }
   },
   verifyAllInputs: function(form) {
     return this.app.formErrorController.verifyAllInputs(form);

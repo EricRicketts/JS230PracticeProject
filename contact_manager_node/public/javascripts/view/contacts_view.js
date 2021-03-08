@@ -1,4 +1,9 @@
 let ContactsView = {
+  addNewTagToTags(currentTagsSelectElement, newTagValue) {
+    let newOption = new Option(newTagValue, newTagValue, false, false);
+    newOption.disabled = true;
+    currentTagsSelectElement.appendChild(newOption);
+  },
   errorMessage: function(inputElement, errorStr) {
     let errorParagraph = inputElement.nextElementSibling;
     this.removeAllChildren(errorParagraph);

@@ -4,6 +4,7 @@ import { GetAllContactsController } from './controllers/get_all_contacts_contoll
 import { DeleteContactController } from "./controllers/delete_contact_controller.js";
 import { AddContactController } from "./controllers/add_contact_controller.js";
 import { FormErrorController } from "./controllers/form_error_controller.js";
+import { TagController } from "./controllers/tag_controller.js";
 import { Helpers } from './helpers/helpers.js';
 
 let ContactsApp = {
@@ -16,6 +17,8 @@ let ContactsApp = {
         this.addContactController.addContactForm(targetElement);
       } else if (this.isSubmitAddContactForm(targetElement)) {
         this.addContactController.submitAddContactForm();
+      } else if (this.isAddNewTagOrAddAvailableTag(targetElement)) {
+        this.tagController.addNewTagOrAddAvailableTag(targetElement);
       }
     });
   },
@@ -24,7 +27,11 @@ let ContactsApp = {
     this.deleteContactController = DeleteContactController.init(contactApp);
     this.addContactController = AddContactController.init(contactApp);
     this.formErrorController = FormErrorController.init(contactApp);
+    this.tagController = TagController.init(contactApp);
     this.helpers = Helpers.init(contactApp);
+  },
+  isAddNewTagOrAddAvailableTag(targetElement) {
+    return targetElement.dataset.type === 'transferTag' || targetElement.dataset.type === 'addTag';
   },
   isDeleteContact: function(targetElement) {
     return targetElement.dataset.type === 'delete';

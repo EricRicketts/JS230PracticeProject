@@ -68,5 +68,12 @@
     "email": "yosemite_sam@warnerbros.com",
     "tags": null,
     "id": 10
+  },
+  {
+    "full_name": "Daffy Duck",
+    "phone_number": "4981230055",
+    "email": "daffy_duck@warnerbros.com",
+    "tags": "cartoon,clown",
+    "id": 11
   }
 ]

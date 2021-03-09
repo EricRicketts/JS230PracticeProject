@@ -68,6 +68,10 @@ let ContactsView = {
     this.insertContactsHeader();
     this.mainContent.insertAdjacentHTML('afterbegin', this.allContactsTemplate(dataFromModel));
   },
+  showEditContactFormAndHeader: function(headerData) {
+    this.removeMainHeaderAndMainContent();
+    this.mainHeader.insertAdjacentHTML('afterbegin', this.showFormHeaderTemplate(headerData));
+  },
   showNoContactsAndHeader: function() {
     this.removeMainHeaderAndMainContent();
     this.insertContactsHeader();

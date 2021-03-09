@@ -29,6 +29,9 @@ let ContactsModel = {
   formattedAllContactData: function() {
     return { contacts: this.allContacts };
   },
+  formattedEditContactHeader: function() {
+    return { header_title: this.editContactHeader };
+  },
   formattedTagsForAddContact: function() {
     let availableTags = this.deepCopyServerData(this.allUniqueTags);
     return { tags: [], available_tags: availableTags }

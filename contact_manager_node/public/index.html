@@ -56,12 +56,12 @@
   </script>
   <script type="text/x-handlebars-template" data-group="partial" id="single_contact_partial">
     <div class="single_contact">
-      <h3>{{full_name}}</h3>
+      <h3 id="single_contact_full_name">{{full_name}}</h3>
       <dl>
         <dt>Phone Number:</dt>
-        <dd>{{phone_number}}</dd>
+        <dd id="single_contact_phone_number">{{phone_number}}</dd>
         <dt>Email:</dt>
-        <dd>{{email}}</dd>
+        <dd id="single_contact_email">{{email}}</dd>
         <dt>Tags:</dt>
         <dl class="single_contact_tags">
           <select name="contact_tags" id="contact_tags">

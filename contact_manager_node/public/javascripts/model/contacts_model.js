@@ -42,6 +42,16 @@ let ContactsModel = {
   noSearchResults: function(searchString) {
     return `There are no contacts with the letters \'${searchString}\'`;
   },
+  formContactObject: function(serverContactData) {
+    let contactObject = this.deepCopyServerData(serverContactData);
+    if (contactObject.tags !== null) {
+      contactObject.tags = contactObject.tags.split(',').sort();
+      contactObject.available_tags = this.extractAvailableTags(contactObject);
+    } else {
+      contactObject.available_tags = this.allUniqueTags;
+    }
+    return contactObject;
+  },
   search: function(searchString) {
     let searchResults = this.allContacts.filter(contact => contact.full_name.includes(searchString));
     return { contacts: searchResults };

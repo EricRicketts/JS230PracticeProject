@@ -42,6 +42,24 @@ describe('Contact Model', function () {
     });
 
     describe('Contact Behavior', function () {
+      let singleContactData, singleContactDataWithNoTags;
+      beforeEach(() => {
+        singleContactData = {
+          email: "ph@example.com",
+          full_name: "Pete Hanson",
+          id: 3,
+          phone_number: "54321098761",
+          tags: "work,programmer",
+        }
+        singleContactDataWithNoTags = {
+          email: "foo_bar@example.com",
+          full_name: "Foo Bar",
+          id: 4,
+          phone_number: "5432108899",
+          tags: null
+        }
+      });
+
       it('should store all contact information', function () {
         expect(contacts.allContacts).to.deep.equal(formattedServerContactData);
       });
@@ -75,6 +93,30 @@ describe('Contact Model', function () {
       it('should provide an object representing no search results', function () {
         expected = { contacts: [] };
         expect(contacts.search('ze')).to.deep.equal(expected);
+      });
+
+      it('should build a contact object', function () {
+        expected = {
+          email: "ph@example.com",
+          full_name: "Pete Hanson",
+          id: 3,
+          phone_number: "54321098761",
+          tags: ['programmer', 'work'],
+          available_tags: ['friend', 'relative', 'scientist',]
+        }
+        expect(contacts.formContactObject(singleContactData)).to.deep.equal(expected);
+      });
+
+      it('should build a contact object which has no tags', function () {
+        expected = {
+          email: "foo_bar@example.com",
+          full_name: "Foo Bar",
+          id: 4,
+          phone_number: "5432108899",
+          tags: null,
+          available_tags: ['friend', 'programmer', 'relative', 'scientist', 'work']
+        }
+        expect(contacts.formContactObject(singleContactDataWithNoTags)).to.deep.equal(expected);
       });
     });
 

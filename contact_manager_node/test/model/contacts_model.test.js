@@ -102,7 +102,6 @@ describe('Contact Model', function () {
           id: 3,
           phone_number: "54321098761",
           tags: ['programmer', 'work'],
-          available_tags: ['friend', 'relative', 'scientist',]
         }
         expect(contacts.formContactObject(singleContactData)).to.deep.equal(expected);
       });
@@ -114,7 +113,6 @@ describe('Contact Model', function () {
           id: 4,
           phone_number: "5432108899",
           tags: null,
-          available_tags: ['friend', 'programmer', 'relative', 'scientist', 'work']
         }
         expect(contacts.formContactObject(singleContactDataWithNoTags)).to.deep.equal(expected);
       });
@@ -203,7 +201,7 @@ describe('Contact Model', function () {
 
       it('should format contact and available tags for the view', function () {
         expected = { tags: ['friend', 'work'], available_tags: ['programmer', 'relative', 'scientist'] }
-        expect(contacts.formatTagsForEdit(secondContactObject)).to.deep.equal(expected);
+        expect(contacts.formattedTagsForEditContact(secondContactObject)).to.deep.equal(expected);
       });
     });
   });

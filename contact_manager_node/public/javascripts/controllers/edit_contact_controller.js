@@ -9,7 +9,9 @@ let EditContactController = {
     getSingleContactXhr.send();
     getSingleContactXhr.addEventListener('load', event => {
       let contactData = event.target.response;
-      this.app.view.showEditContactFormAndHeader(headerData);
+      let contactObject = this.app.model.formContactObject(contactData);
+      let tagData = this.app.model.formattedTagsForEditContact(contactObject);
+      this.app.view.showEditContactFormAndHeader(headerData, tagData);
     });
   },
   getSingleContactInformation: function(targetElement) {

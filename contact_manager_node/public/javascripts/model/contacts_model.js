@@ -36,7 +36,7 @@ let ContactsModel = {
     let availableTags = this.deepCopyServerData(this.allUniqueTags);
     return { tags: [], available_tags: availableTags }
   },
-  formatTagsForEdit: function(contactObject) {
+  formattedTagsForEditContact: function(contactObject) {
     return { tags: contactObject.tags, available_tags: this.extractAvailableTags(contactObject) };
   },
   noSearchResults: function(searchString) {
@@ -46,9 +46,6 @@ let ContactsModel = {
     let contactObject = this.deepCopyServerData(serverContactData);
     if (contactObject.tags !== null) {
       contactObject.tags = contactObject.tags.split(',').sort();
-      contactObject.available_tags = this.extractAvailableTags(contactObject);
-    } else {
-      contactObject.available_tags = this.allUniqueTags;
     }
     return contactObject;
   },

@@ -12,6 +12,9 @@ let Helpers = {
       });
     });
   },
+  areThereNoAvailableTags: function(availableTagsSelect) {
+    return Array.from(availableTagsSelect.options).length === 0;
+  },
   convertDataToJson: function(form) {
     let tagsElement = form.querySelector('#tags');
     let formData = new FormData(form);

@@ -35,6 +35,11 @@ let ContactsView = {
   insertContactsHeader: function() {
     this.mainHeader.insertAdjacentHTML('afterbegin', this.showContactsHeaderTemplate());
   },
+  makeAvailableTagsNotSelectable: function(availableTagsSelect) {
+    let availableTagsSelectBtn = availableTagsSelect.parentElement.nextElementSibling.querySelector('button');
+    availableTagsSelect.classList.add('non_selectable');
+    availableTagsSelectBtn.classList.add('non_selectable');
+  },
   removeAllChildren: function(node) {
     while (node.firstChild) { node.removeChild(node.lastChild); }
   },
@@ -72,8 +77,20 @@ let ContactsView = {
     this.mainHeader = this.document.getElementById('content_heading');
     this.mainContent = this.document.getElementById('content');
   },
-  init: function(document) {
+  transferATagFromAvailableTagsToCurrentTags: function(availableTagsSelect, currentTagsSelect) {
+    let selectedTagIndex = availableTagsSelect.selectedIndex;
+    let selectedTag = availableTagsSelect.options[selectedTagIndex];
+    let clonedSelectedTag = selectedTag.cloneNode(true);
+    clonedSelectedTag.disabled = true;
+    currentTagsSelect.appendChild(clonedSelectedTag);
+    availableTagsSelect.removeChild(availableTagsSelect.options[selectedTagIndex]);
+    if (this.app.helpers.areThereNoAvailableTags(availableTagsSelect)) {
+      this.makeAvailableTagsNotSelectable(availableTagsSelect);
+    }
+  },
+  init: function(document, contactApp) {
     this.document = document;
+    this.app = contactApp;
     this.re = /_[a-z]/g;
     this.initializeAndRegisterPartials();
     this.initializeAndCompileTemplates();

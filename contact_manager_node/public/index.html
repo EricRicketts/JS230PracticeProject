@@ -28,7 +28,7 @@
     <div class="contact_form_generic_field">
       <label for="tags">Current Tags:</label>
       <select name="tags" id="tags">
-        <option value="">View Added Tags</option>
+        <option value="" selected>View Added Tags</option>
         {{#each tags as |tag|}}
           <option value="{{tag}}" disabled>{{tag}}</option>
         {{/each}}

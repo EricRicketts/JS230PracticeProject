@@ -218,6 +218,12 @@ main {
   display: none;
 }
 
+.non_selectable {
+  user-select: none;
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
 .error_text {
   color: red;
   text-align: right;

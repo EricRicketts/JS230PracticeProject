@@ -1,12 +1,16 @@
 let EditContactController = {
   editContactForm: function(targetElement) {
-    let contactId = targetElement.dataset.id;
-    let fullUrl = this.url + `/${contactId}`;
-    let getSingleContactXhr = new XMLHttpRequest();
-    getSingleContactXhr.open(this.get_method, fullUrl);
-    getSingleContactXhr.responseType = 'json';
+    let getSingleContactXhr = this.formSingleContactGetRequest(targetElement);
     getSingleContactXhr.send();
     this.getSingleContactInformation(getSingleContactXhr);
+  },
+  formSingleContactGetRequest: function(targetElement) {
+    let contactId = targetElement.dataset.id;
+    let fullUrl = this.url + `/${contactId}`;
+    let xhr = new XMLHttpRequest();
+    xhr.open(this.get_method, fullUrl);
+    xhr.responseType = 'json';
+    return xhr;
   },
   getSingleContactInformation: function(xhr) {
     xhr.addEventListener('load', event => {

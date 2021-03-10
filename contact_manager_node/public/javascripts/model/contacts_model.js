@@ -11,10 +11,14 @@ let ContactsModel = {
   },
   extractAvailableTags: function(contactObject) {
     let contactTags = contactObject.tags;
-    return this.allUniqueTags.reduce((availableTags, globalTag) => {
-      if (!contactTags.includes(globalTag)) { availableTags.push(globalTag); }
-      return availableTags;
-    }, []).sort();
+    if (!contactTags) {
+      return this.allUniqueTags;
+    } else {
+      return this.allUniqueTags.reduce((availableTags, globalTag) => {
+        if (!contactTags.includes(globalTag)) { availableTags.push(globalTag); }
+        return availableTags;
+      }, []).sort();
+    }
   },
   findContactsWithTag: function(searchTag) {
     return this.allContacts.filter(contactObject => this.contactHasTag(contactObject, searchTag));

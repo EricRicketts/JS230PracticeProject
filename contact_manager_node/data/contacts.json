@@ -82,5 +82,19 @@
     "email": "porky_pig@warnerbros.com",
     "tags": "cartoon,entertainer,clown",
     "id": 12
+  },
+  {
+    "full_name": "Tweety Bird",
+    "phone_number": "9088091144",
+    "email": "tweety_bird@warnerbros.com",
+    "tags": "cartoon,entertainer,programmer,friend",
+    "id": 13
+  },
+  {
+    "full_name": "Sylvester",
+    "phone_number": "7822871100",
+    "email": "sylvester@warnerbros.com",
+    "tags": "cartoon,entertainer",
+    "id": 14
   }
 ]

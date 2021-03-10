@@ -8,10 +8,7 @@ let AddContactController = {
     this.app.helpers.addFocusListeners(this.form);
   },
   buildAndSendRequest: function(form) {
-    let addContactXhr = new XMLHttpRequest();
-    addContactXhr.open(this.method, this.url);
-    addContactXhr.setRequestHeader('Content-Type', 'application/json');
-    addContactXhr.responseType = 'json';
+    let addContactXhr = this.formSingleContactPostRequest();
     let jsonData = this.app.helpers.convertDataToJson(this.form);
     addContactXhr.send(jsonData);
     addContactXhr.addEventListener('load', event => {
@@ -19,15 +16,18 @@ let AddContactController = {
       this.app.getAllContactsController.getAllContacts();
     });
   },
-  submitAddContactForm: function() {
-    if (this.verifyAllInputs(this.form)) { this.buildAndSendRequest(this.form); }
+  formSingleContactPostRequest: function() {
+    let xhr = new XMLHttpRequest();
+    xhr.open('POST', this.url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.responseType = 'json';
+    return xhr;
   },
-  verifyAllInputs: function(form) {
-    return this.app.formErrorController.verifyAllInputs(form);
+  verifyAndSubmitAddContactForm: function() {
+    if (this.app.formErrorController.verifyAllInputs(this.form)) { this.buildAndSendRequest(this.form); }
   },
   init: function(contactApp) {
     this.app = contactApp;
-    this.method = 'POST';
     this.url = 'http://localhost:3000/api/contacts';
     return this;
   }

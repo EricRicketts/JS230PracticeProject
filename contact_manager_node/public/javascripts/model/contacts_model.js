@@ -23,10 +23,6 @@ let ContactsModel = {
   findContactsWithTag: function(searchTag) {
     return this.allContacts.filter(contactObject => this.contactHasTag(contactObject, searchTag));
   },
-  formatTags(contactObjectTags, newTag = false) {
-    if (newTag) { contactObjectTags.push(newTag) }
-    return contactObjectTags.join(',');
-  },
   formatAddContactSubmitButton: function() {
     return { submit_type: this.addContactButtonDataType };
   },

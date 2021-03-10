@@ -23,29 +23,30 @@ let EditContactController = {
     this.contactId = targetElement.dataset.id;
     let fullUrl = this.url + `/${this.contactId}`;
     let xhr = new XMLHttpRequest();
-    xhr.open(this.get_method, fullUrl);
+    xhr.open('GET', fullUrl);
     xhr.responseType = 'json';
     return xhr;
   },
   formSingleContactPutRequest: function() {
     let fullUrl = this.url + `/${this.contactId}`;
     let xhr = new XMLHttpRequest();
-    xhr.open(this.put_method, fullUrl);
+    xhr.open('PUT', fullUrl);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.responseType = 'json';
     return xhr;
   },
   populateEditFormWithXhrData: function(xhr) {
     xhr.addEventListener('load', event => {
-      this.populateEditFormHeaderAndTagFields(event);
+      let contactData = event.target.response;
+      this.populateEditFormHeaderAndTagFields(contactData);
       this.form = this.app.document.getElementById('edit_add_contact_form');
-      let contactObject = this.app.model.formContactObject(event.target.response);
+      let contactObject = this.app.model.formContactObject(contactData);
       this.populateRestOfEditForm(contactObject, this.form);
       this.app.helpers.addFocusListeners(this.form);
     });
   },
-  populateEditFormHeaderAndTagFields: function(event) {
-    let [headerData, tagData] = this.formatHeaderAndTagDataForTemplate(event.target.response);
+  populateEditFormHeaderAndTagFields: function(contactData) {
+    let [headerData, tagData] = this.formatHeaderAndTagDataForTemplate(contactData);
     let submitButtonDataType = this.app.model.formatEditContactSubmitButton();
     this.app.view.showEditContactFormAndHeader(headerData, tagData, submitButtonDataType);
   },
@@ -59,17 +60,12 @@ let EditContactController = {
       input.value = contactObject[contactKey];
     });
   },
-  submitEditContactForm: function() {
-    if (this.verifyAllInputs(this.form)) { this.buildAndSendRequest(this.form); }
-  },
-  verifyAllInputs: function(form) {
-    return this.app.formErrorController.verifyAllInputs(form);
+  verifyAndSubmitEditContactForm: function() {
+    if (this.app.formErrorController.verifyAllInputs(this.form)) { this.buildAndSendRequest(this.form); }
   },
   init: function(contactApp) {
     this.app = contactApp;
     this.url = 'http://localhost:3000/api/contacts';
-    this.get_method = 'GET';
-    this.put_method = 'PUT';
     return this;
   }
 }

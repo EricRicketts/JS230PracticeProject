@@ -9,11 +9,11 @@ describe('Contact Model', function () {
   });
   describe('Header Information Initialize Contact And Tag Data', function () {
     it('should provide header information for Add Contact', function () {
-      expect(contacts.addContactHeader).to.equal('Create Contact');
+      expect(contacts.formattedAddContactHeader()).to.deep.equal({ header_title: 'Create Contact' });
     });
 
     it('should provide header information for Edit Contact', function () {
-      expect(contacts.editContactHeader).to.equal('Edit Contact');
+      expect(contacts.formattedEditContactHeader()).to.deep.equal({ header_title: 'Edit Contact' });
     });
 
     it('should provide header information for no contacts', function () {

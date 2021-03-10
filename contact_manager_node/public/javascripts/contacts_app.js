@@ -17,11 +17,11 @@ let ContactsApp = {
       } else if (this.isLinkToAddContactForm(targetElement)) {
         this.addContactController.addContactForm(targetElement);
       } else if (this.isSubmitAddContactForm(targetElement)) {
-        this.addContactController.submitAddContactForm();
+        this.addContactController.verifyAndSubmitAddContactForm();
       } else if (this.isLinkToEditContactForm(targetElement)) {
         this.editContactController.editContactForm(targetElement);
       } else if (this.isSubmitEditContactForm(targetElement)) {
-        this.editContactController.submitEditContactForm();
+        this.editContactController.verifyAndSubmitEditContactForm();
       } else if (this.isAddNewTagOrAddAvailableTag(targetElement)) {
         this.tagController.addNewTagOrAddAvailableTag(targetElement);
       }

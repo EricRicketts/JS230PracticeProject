@@ -15,24 +15,30 @@ let Helpers = {
   areThereNoAvailableTags: function(availableTagsSelect) {
     return Array.from(availableTagsSelect.options).length === 0;
   },
-  convertDataToJson: function(form) {
-    let tagsElement = form.querySelector('#tags');
+  formDataWithTags: function(tagsElement, formData) {
+    let allTags = Array.from(tagsElement.options).map(option => option.value);
+    let numberOfTags = allTags.length;
+    if (numberOfTags === 1) {
+      formData.tags = null;
+    } else {
+      formData.tags = allTags.slice(1, numberOfTags).join(',');
+    }
+  },
+  formDataWithoutTags: function(form) {
     let formData = new FormData(form);
-    let data = Array.from(formData.entries()).reduce((obj, keyValueArr) => {
+    return Array.from(formData.entries()).reduce((obj, keyValueArr) => {
       let [key, value] = [keyValueArr[0], keyValueArr[1]];
       if (key !== 'tags') {
         obj[key] = value.trim();
       }
       return obj;
     }, {});
-    let allTags = Array.from(tagsElement.options).map(option => option.value);
-    let numberOfTags = allTags.length;
-    if (numberOfTags === 1) {
-      data.tags = null;
-    } else {
-      data.tags = allTags.slice(1, numberOfTags).join(',');
-    }
-    return JSON.stringify(data);
+  },
+  convertDataToJson: function(form) {
+    let tagsElement = form.querySelector('#tags');
+    let formData = this.formDataWithoutTags(form);
+    this.formDataWithTags(tagsElement, formData);
+    return JSON.stringify(formData);
   },
   isInputInFocus: function(inputElement) {
     return inputElement === this.app.document.activeElement;

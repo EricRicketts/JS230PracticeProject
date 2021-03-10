@@ -58,8 +58,9 @@ let ContactsView = {
   replacer: function(match) {
     return match[1].toUpperCase();
   },
-  showAddContactFormAndHeader: function(headerData, tagData) {
+  showAddContactFormAndHeader: function(headerData, tagData, submitButtonDataType) {
     this.removeMainHeaderAndMainContent();
+    tagData[Object.keys(submitButtonDataType)[0]] = Object.values(submitButtonDataType)[0];
     this.mainHeader.insertAdjacentHTML('afterbegin', this.showFormHeaderTemplate(headerData));
     this.mainContent.insertAdjacentHTML("afterbegin", this.editAddContactFormTemplate(tagData));
   },
@@ -68,8 +69,9 @@ let ContactsView = {
     this.insertContactsHeader();
     this.mainContent.insertAdjacentHTML('afterbegin', this.allContactsTemplate(dataFromModel));
   },
-  showEditContactFormAndHeader: function(headerData, tagData) {
+  showEditContactFormAndHeader: function(headerData, tagData, submitButtonDataType) {
     this.removeMainHeaderAndMainContent();
+    tagData[Object.keys(submitButtonDataType)[0]] = Object.values(submitButtonDataType)[0];
     this.mainHeader.insertAdjacentHTML('afterbegin', this.showFormHeaderTemplate(headerData));
     this.mainContent.insertAdjacentHTML('afterbegin', this.editAddContactFormTemplate(tagData));
   },

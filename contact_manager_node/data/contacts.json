@@ -75,5 +75,12 @@
     "email": "daffy_duck@warnerbros.com",
     "tags": "cartoon,clown",
     "id": 11
+  },
+  {
+    "full_name": "Porky Pig",
+    "phone_number": "8982328811",
+    "email": "porky_pig@warnerbros.com",
+    "tags": "cartoon,entertainer,clown",
+    "id": 12
   }
 ]

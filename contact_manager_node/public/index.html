@@ -21,7 +21,7 @@
   </main>
 
   <script type="text/x-handlebars-template" data-group="partial" id="form_submit_cancel_partial">
-    <button type="button" id="add_contact_button">Submit</button>
+    <button type="button" id="single_contact_button" data-type="{{submit_type}}">Submit</button>
     <button type="button" data-type="getAllContacts">Cancel</button>
   </script>
   <script type="text/x-handlebars-template" data-group="partial" id="form_tags_partial">
@@ -108,7 +108,7 @@
         </div>
         {{> formTagsPartial this}}
         <div class="contact_form_submit_cancel_field">
-          {{> formSubmitCancelPartial}}
+          {{> formSubmitCancelPartial this}}
         </div>
       </form>
     </div>

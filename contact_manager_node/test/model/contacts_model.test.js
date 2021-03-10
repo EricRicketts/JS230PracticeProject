@@ -30,6 +30,12 @@ describe('Contact Model', function () {
       results = [contacts.allContacts, contacts.allUniqueTags];
       expect(results).to.deep.equal(expected);
     });
+
+    it('should format add contact and edit contact submit buttons', function () {
+      expected = [{ submit_type: 'add_contact' }, { submit_type: 'edit_contact' }];
+      results = [contacts.formatAddContactSubmitButton(), contacts.formatEditContactSubmitButton()];
+      expect(results).to.deep.equal(expected);
+    });
   });
 
   describe('Contact And Tag Behavior', function () {

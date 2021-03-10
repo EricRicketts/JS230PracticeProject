@@ -27,6 +27,12 @@ let ContactsModel = {
     if (newTag) { contactObjectTags.push(newTag) }
     return contactObjectTags.join(',');
   },
+  formatAddContactSubmitButton: function() {
+    return { submit_type: this.addContactButtonDataType };
+  },
+  formatEditContactSubmitButton: function() {
+    return { submit_type: this.editContactButtonDataType };
+  },
   formattedAddContactHeader: function() {
     return { header_title: this.addContactHeader };
   },
@@ -87,6 +93,8 @@ let ContactsModel = {
     this.addContactHeader = 'Create Contact';
     this.editContactHeader = 'Edit Contact';
     this.noContactsHeader = 'There are no contacts';
+    this.addContactButtonDataType = 'add_contact';
+    this.editContactButtonDataType = 'edit_contact';
     this.allContacts = null;
     this.allUniqueTags = null;
     return this;

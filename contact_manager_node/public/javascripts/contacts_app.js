@@ -20,6 +20,8 @@ let ContactsApp = {
         this.addContactController.submitAddContactForm();
       } else if (this.isLinkToEditContactForm(targetElement)) {
         this.editContactController.editContactForm(targetElement);
+      } else if (this.isSubmitEditContactForm(targetElement)) {
+        this.editContactController.submitEditContactForm();
       } else if (this.isAddNewTagOrAddAvailableTag(targetElement)) {
         this.tagController.addNewTagOrAddAvailableTag(targetElement);
       }
@@ -44,7 +46,10 @@ let ContactsApp = {
     return targetElement.dataset.type === 'add';
   },
   isSubmitAddContactForm: function(targetElement) {
-    return targetElement.id === 'add_contact_button';
+    return targetElement.dataset.type === 'add_contact';
+  },
+  isSubmitEditContactForm: function(targetElement) {
+    return targetElement.dataset.type === 'edit_contact';
   },
   isLinkToEditContactForm: function(targetElement) {
     return targetElement.dataset.type === 'edit';

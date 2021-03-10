@@ -2,7 +2,8 @@ let AddContactController = {
   addContactForm: function(targetElement) {
     let headerData = this.app.model.formattedAddContactHeader();
     let addContactTags = this.app.model.formattedTagsForAddContact();
-    this.app.view.showAddContactFormAndHeader(headerData, addContactTags);
+    let submitButtonDataType = this.app.model.formatAddContactSubmitButton();
+    this.app.view.showAddContactFormAndHeader(headerData, addContactTags, submitButtonDataType);
     this.form = this.app.document.getElementById('edit_add_contact_form');
     this.app.helpers.addFocusListeners(this.form);
   },

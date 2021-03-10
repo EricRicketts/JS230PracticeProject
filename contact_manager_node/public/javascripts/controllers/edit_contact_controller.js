@@ -2,7 +2,13 @@ let EditContactController = {
   editContactForm: function(targetElement) {
     let getSingleContactXhr = this.formSingleContactGetRequest(targetElement);
     getSingleContactXhr.send();
-    this.getSingleContactInformation(getSingleContactXhr);
+    this.populateEditFormWithXhrData(getSingleContactXhr);
+  },
+  formatHeaderAndTagDataForTemplate: function(contactData) {
+    let headerData = this.app.model.formattedEditContactHeader();
+    let contactObject = this.app.model.formContactObject(contactData);
+    let tagData = this.app.model.formattedTagsForEditContact(contactObject);
+    return [headerData, tagData];
   },
   formSingleContactGetRequest: function(targetElement) {
     let contactId = targetElement.dataset.id;
@@ -12,24 +18,27 @@ let EditContactController = {
     xhr.responseType = 'json';
     return xhr;
   },
-  getSingleContactInformation: function(xhr) {
+  populateEditFormWithXhrData: function(xhr) {
     xhr.addEventListener('load', event => {
-      let headerData = this.app.model.formattedEditContactHeader();
-      let contactData = event.target.response;
-      let contactObject = this.app.model.formContactObject(contactData);
-      let contactKeys = Object.keys(contactObject).filter(key => key !== 'tags');
-      let tagData = this.app.model.formattedTagsForEditContact(contactObject);
-      this.app.view.showEditContactFormAndHeader(headerData, tagData);
+      this.populateEditFormHeaderAndTagFields(event);
       let form = this.app.document.getElementById('edit_add_contact_form');
-      let personalFormInputs = Array.from(form.getElementsByTagName('input')).filter(input => {
-        return input.id !== 'new_tag';
-      });
-      personalFormInputs.forEach(input => {
-        let contactKey = contactKeys.find(key => key === input.id);
-        input.value = contactObject[contactKey];
-      });
-      form = this.app.document.getElementById('edit_add_contact_form');
+      let contactObject = this.app.model.formContactObject(event.target.response);
+      this.populateRestOfEditForm(contactObject, form);
       this.app.helpers.addFocusListeners(form);
+    });
+  },
+  populateEditFormHeaderAndTagFields: function(event) {
+    let [headerData, tagData] = this.formatHeaderAndTagDataForTemplate(event.target.response);
+    this.app.view.showEditContactFormAndHeader(headerData, tagData);
+  },
+  populateRestOfEditForm: function(contactObject, form) {
+    let contactKeys = Object.keys(contactObject).filter(key => key !== 'tags');
+    let personalFormInputs = Array.from(form.getElementsByTagName('input')).filter(input => {
+      return input.id !== 'new_tag';
+    });
+    personalFormInputs.forEach(input => {
+      let contactKey = contactKeys.find(key => key === input.id);
+      input.value = contactObject[contactKey];
     });
   },
   init: function(contactApp) {

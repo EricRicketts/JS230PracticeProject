@@ -2,12 +2,15 @@ let EditContactController = {
   editContactForm: function(targetElement) {
     let contactId = targetElement.dataset.id;
     let fullUrl = this.url + `/${contactId}`;
-    let headerData = this.app.model.formattedEditContactHeader();
     let getSingleContactXhr = new XMLHttpRequest();
     getSingleContactXhr.open(this.get_method, fullUrl);
     getSingleContactXhr.responseType = 'json';
     getSingleContactXhr.send();
-    getSingleContactXhr.addEventListener('load', event => {
+    this.getSingleContactInformation(getSingleContactXhr);
+  },
+  getSingleContactInformation: function(xhr) {
+    xhr.addEventListener('load', event => {
+      let headerData = this.app.model.formattedEditContactHeader();
       let contactData = event.target.response;
       let contactObject = this.app.model.formContactObject(contactData);
       let contactKeys = Object.keys(contactObject).filter(key => key !== 'tags');
@@ -21,10 +24,9 @@ let EditContactController = {
         let contactKey = contactKeys.find(key => key === input.id);
         input.value = contactObject[contactKey];
       });
+      form = this.app.document.getElementById('edit_add_contact_form');
+      this.app.helpers.addFocusListeners(form);
     });
-  },
-  getSingleContactInformation: function(targetElement) {
-
   },
   init: function(contactApp) {
     this.app = contactApp;

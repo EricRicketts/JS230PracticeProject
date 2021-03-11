@@ -129,11 +129,11 @@ main {
   outline: none;
 }
 
-.single_contact_buttons {
+.single_contact_buttons, .shared_contacts_button {
   margin-top: 15px;
 }
 
-.single_contact_buttons > button {
+.single_contact_buttons > button, .shared_contacts_button > button {
   display: inline-block;
   height: 30px;
   border: 1px solid #6f5499;

@@ -28,9 +28,8 @@
     <div class="contact_form_generic_field">
       <label for="tags">Current Tags:</label>
       <select name="tags" id="tags">
-        <option value="" selected>View Added Tags</option>
         {{#each tags as |tag|}}
-          <option value="{{tag}}" disabled>{{tag}}</option>
+          <option value="{{tag}}">{{tag}}</option>
         {{/each}}
       </select>
     </div>
@@ -69,6 +68,9 @@
               <option value={{tag}}>{{tag}}</option>
             {{/each}}
           </select>
+          <div class="shared_contacts_button">
+            <button type="button" data-type="show_shared_contacts">Contacts Sharing Tag</button>
+          </div>
         </dl>
       </dl>
       <div class="single_contact_buttons">

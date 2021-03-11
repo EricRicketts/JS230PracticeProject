@@ -18,10 +18,10 @@ let Helpers = {
   formDataWithTags: function(tagsElement, formData) {
     let allTags = Array.from(tagsElement.options).map(option => option.value);
     let numberOfTags = allTags.length;
-    if (numberOfTags === 1) {
+    if (numberOfTags === 0) {
       formData.tags = null;
     } else {
-      formData.tags = allTags.slice(1, numberOfTags).join(',');
+      formData.tags = allTags.slice().join(',');
     }
   },
   formDataWithoutTags: function(form) {

@@ -12,7 +12,7 @@
 </head>
   <body>
   <header id="page_header">
-    <a href="/api/contacts" data-method="GET"><h1>Contact Manager</h1></a>
+    <a href="" data-type="get_all_contacts"><h1>Contact Manager</h1></a>
     <p>Using Backbone.js, Localstorage, RequireJS, Handlebars.js, and Bootstrap</p>
   </header>
   <main>
@@ -22,7 +22,7 @@
 
   <script type="text/x-handlebars-template" data-group="partial" id="form_submit_cancel_partial">
     <button type="button" id="single_contact_button" data-type="{{submit_type}}">Submit</button>
-    <button type="button" data-type="getAllContacts">Cancel</button>
+    <button type="button" data-type="get_all_contacts">Cancel</button>
   </script>
   <script type="text/x-handlebars-template" data-group="partial" id="form_tags_partial">
     <div class="contact_form_generic_field">

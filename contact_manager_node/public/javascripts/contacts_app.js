@@ -24,6 +24,8 @@ let ContactsApp = {
         this.editContactController.verifyAndSubmitEditContactForm();
       } else if (this.isAddNewTagOrAddAvailableTag(targetElement)) {
         this.tagController.addNewTagOrAddAvailableTag(targetElement);
+      } else if (this.isCancelButtonOrHeaderLink(targetElement)) {
+        this.getAllContactsController.getAllContacts();
       }
     });
   },
@@ -38,6 +40,9 @@ let ContactsApp = {
   },
   isAddNewTagOrAddAvailableTag(targetElement) {
     return targetElement.dataset.type === 'transferTag' || targetElement.dataset.type === 'addTag';
+  },
+  isCancelButtonOrHeaderLink: function(targetElement) {
+    return targetElement.dataset.type = 'get_all_contacts';
   },
   isDeleteContact: function(targetElement) {
     return targetElement.dataset.type === 'delete';

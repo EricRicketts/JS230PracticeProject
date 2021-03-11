@@ -70,7 +70,7 @@ let FormattedContactModelData = [
     full_name: "Eric Ricketts",
     email: "eric_ricketts@icloud.com",
     phone_number: "9194495529",
-    tags: [null]
+    tags: []
   },
   {
     id: 5,

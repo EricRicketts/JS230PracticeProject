@@ -61,7 +61,7 @@ let ContactsModel = {
   },
   storeAllContactData(serverContactData) {
     let formattedContactData = this.deepCopyServerData(serverContactData).map(contact => {
-      contact.tags = contact.tags ? this.tagStringToArray(contact) : [contact.tags];
+      contact.tags = contact.tags ? this.tagStringToArray(contact) : [];
       return contact;
     });
     this.allContacts = formattedContactData;

@@ -42,7 +42,7 @@ let ContactsApp = {
     return targetElement.dataset.type === 'transferTag' || targetElement.dataset.type === 'addTag';
   },
   isCancelButtonOrHeaderLink: function(targetElement) {
-    return targetElement.dataset.type = 'get_all_contacts';
+    return targetElement.dataset.type === 'get_all_contacts';
   },
   isDeleteContact: function(targetElement) {
     return targetElement.dataset.type === 'delete';

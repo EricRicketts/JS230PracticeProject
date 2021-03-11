@@ -1,0 +1,21 @@
+in this case, we want a tag, when selected to show all contacts with the same tag.
+I think the best place to put such a feature is on the landing page, the user can select a current tag and then
+I can add a button which allows the user to see all contacts with the same tag, the results would still be on the
+home page.
+
+The other option is to put the feature on the add contact or edit contact form but if we put the feature there we
+would have to navigate away from the Forms to see all of the shared contacts.
+
+So the Tags need to be selectable in the home page.
+
+Algorithm:
+1.  The button is not selectable if View All Tags is shown (maybe change it to "Tags"?)
+2.  Once a tag is selected the button should be selectable, maybe hide the button to begin with.
+3.  Maybe the button title should be "Shared Contacts"
+4.  As with the other buttons, the button click should be delegated.
+5.  Once the button is clicked call the Model to find the shared contacts.
+6.  The Shared contacts should be put in the same format as when one gets all contacts.
+7.  Initially I am thinking there should not be a back button, as the header link provides this.
+
+
+On another note if tags is null then there should be no selectable tag

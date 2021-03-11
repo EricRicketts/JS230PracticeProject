@@ -7,14 +7,14 @@ let ContactsView = {
   errorMessage: function(inputElement, errorStr) {
     let errorParagraph = inputElement.nextElementSibling;
     this.removeAllChildren(errorParagraph);
-    let errorText = this.document.createTextNode(errorStr);
+    let errorText = this.app.document.createTextNode(errorStr);
     errorParagraph.appendChild(errorText);
     errorParagraph.classList.remove('hidden');
     errorParagraph.classList.add('error_text');
     inputElement.classList.add('error_field');
   },
   initializeAndCompileTemplates: function() {
-    let allTemplates = Array.from(this.document.querySelectorAll('[data-group=template]'));
+    let allTemplates = Array.from(this.app.document.querySelectorAll('[data-group=template]'));
     allTemplates.forEach(template => {
       let propertyName = template.id.replace(this.re, this.replacer);
       Object.defineProperty(this, propertyName, {
@@ -26,7 +26,7 @@ let ContactsView = {
     })
   },
   initializeAndRegisterPartials: function() {
-    let allPartials = Array.from(this.document.querySelectorAll('[data-group=partial]'));
+    let allPartials = Array.from(this.app.document.querySelectorAll('[data-group=partial]'));
     allPartials.forEach(partial => {
       let partialName = partial.id.replace(this.re, this.replacer);
       Handlebars.registerPartial(partialName, partial.innerHTML);
@@ -81,8 +81,8 @@ let ContactsView = {
     this.mainContent.insertAdjacentHTML('afterbegin', this.noContactsTemplate());
   },
   storeMainHeaderAndContentElement: function() {
-    this.mainHeader = this.document.getElementById('content_heading');
-    this.mainContent = this.document.getElementById('content');
+    this.mainHeader = this.app.document.getElementById('content_heading');
+    this.mainContent = this.app.document.getElementById('content');
   },
   transferATagFromAvailableTagsToCurrentTags: function(availableTagsSelect, currentTagsSelect) {
     let selectedTagIndex = availableTagsSelect.selectedIndex;
@@ -95,8 +95,7 @@ let ContactsView = {
       this.makeAvailableTagsNotSelectable(availableTagsSelect);
     }
   },
-  init: function(document, contactApp) {
-    this.document = document;
+  init: function(contactApp) {
     this.app = contactApp;
     this.re = /_[a-z]/g;
     this.initializeAndRegisterPartials();

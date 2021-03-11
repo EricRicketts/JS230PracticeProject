@@ -66,7 +66,7 @@ let ContactsApp = {
   },
   init: function(document) {
     this.document = document;
-    this.view = ContactsView.init(document, this);
+    this.view = ContactsView.init(this);
     this.model = ContactsModel.init();
     this.initializeControllers(this);
     this.getAllContactsController.getAllContacts();

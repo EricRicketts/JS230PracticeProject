@@ -25,6 +25,13 @@ let TagController = {
       this.addAvailableTag(targetElement);
     }
   },
+  showContactsWithCommonTag: function(targetElement) {
+    let tagsSelectElement = targetElement.parentElement.previousElementSibling;
+    let selectedTag = tagsSelectElement.options[tagsSelectElement.selectedIndex].value;
+    let sharedContacts = this.app.model.findContactsWithTag(selectedTag);
+    let formattedSharedContacts = this.app.model.formatGivenContactData(sharedContacts);
+    this.app.view.showAllContactsAndHeader(formattedSharedContacts);
+  },
   init: function(contactApp) {
     this.app = contactApp;
     return this;

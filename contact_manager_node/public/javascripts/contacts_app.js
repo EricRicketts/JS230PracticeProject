@@ -24,6 +24,8 @@ let ContactsApp = {
         this.editContactController.verifyAndSubmitEditContactForm();
       } else if (this.isAddNewTagOrAddAvailableTag(targetElement)) {
         this.tagController.addNewTagOrAddAvailableTag(targetElement);
+      } else if (this.isShowContactsWithCommonTag(targetElement)) {
+        this.tagController.showContactsWithCommonTag(targetElement);
       } else if (this.isCancelButtonOrHeaderLink(targetElement)) {
         this.getAllContactsController.getAllContacts();
       }
@@ -49,6 +51,9 @@ let ContactsApp = {
   },
   isLinkToAddContactForm: function(targetElement) {
     return targetElement.dataset.type === 'add';
+  },
+  isShowContactsWithCommonTag(targetElement) {
+    return targetElement.dataset.type === 'shared_contacts';
   },
   isSubmitAddContactForm: function(targetElement) {
     return targetElement.dataset.type === 'add_contact';

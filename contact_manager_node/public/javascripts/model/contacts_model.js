@@ -29,6 +29,9 @@ let ContactsModel = {
   formatEditContactSubmitButton: function() {
     return { submit_type: this.editContactButtonDataType };
   },
+  formatGivenContactData: function(contacts) {
+    return { contacts: contacts };
+  },
   formattedAddContactHeader: function() {
     return { header_title: this.addContactHeader };
   },

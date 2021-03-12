@@ -11,7 +11,8 @@ let FormatDataController = {
     return JSON.stringify(data);
   },
   init: function(contactApp) {
-    this.app = contactApp;
+    // this.app = contactApp;
+    Object.setPrototypeOf(this, contactApp);
     this.contactAttributes = ['full_name', 'phone_number', 'email', 'tags'];
     return this;
   }

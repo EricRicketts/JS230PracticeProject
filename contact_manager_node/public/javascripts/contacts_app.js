@@ -10,8 +10,67 @@ import { Helpers } from './helpers/helpers.js';
 
 let ContactsApp = {
   deployControllers: function() {
+    let controllerActions = {
+      addContactForm: function(confirmAction) {
+        return this.addContactController.addContactForm(confirmAction);
+      }.bind(this),
+      addContact: function(confirmAction) {
+        return this.addContactController.verifyAndSubmitAddContactForm();
+      }.bind(this),
+      deleteContact: function(confirmAction) {
+        return this.deleteContactController.deleteContact(confirmAction);
+      }.bind(this),
+      editContactForm: function(confirmAction) {
+        return this.editContactController.editContactForm(confirmAction);
+      }.bind(this),
+      editContact: function(confirmAction) {
+        return this.editContactController.verifyAndSubmitEditContactForm(confirmAction);
+      }.bind(this),
+      getAllContacts: function(confirmAction) {
+        return this.getAllContactsController.getAllContacts(confirmAction);
+      }.bind(this),
+      addNewTag: function(confirmAction) {
+        return this.tagController.addNewTagOrAddAvailableTag(confirmAction);
+      }.bind(this),
+      transferTag: function(confirmAction) {
+        return this.tagController.addNewTagOrAddAvailableTag(confirmAction);
+      }.bind(this),
+      sharedContacts: function(confirmAction) {
+        return this.tagController.showContactsWithCommonTag(confirmAction);
+      }.bind(this)
+    }
+/*
+    let controllerActions = {};
+    let self = this;
+    [
+      ['add', self.addContactController.addContactForm.bind(self)]
+    ].forEach(function(arr) {
+      let [prop, fn] = [...arr];
+      controllerActions[prop] = function(confirmAction) { return fn(confirmAction) };
+    });
+
+ */
     this.document.addEventListener('click', event => {
-      let targetElement = event.target;
+      let confirmAction = event.target;
+      let controllerAction = confirmAction.dataset.type;
+      let fn = controllerActions[controllerAction];
+      typeof fn === 'function' ? fn(confirmAction) : '';
+      /*
+      let controllerActions = {
+        'delete': this.deleteContactController.deleteContact,
+        'add': this.addContactController.addContactForm,
+        'edit': this.editContactController.editContactForm,
+        'edit_contact': this.editContactController.verifyAndSubmitEditContactForm,
+        'addTag':this.tagController.addNewTagOrAddAvailableTag,
+        'transferTag':this.tagController.addNewTagOrAddAvailableTag,
+        'shared_contacts': this.tagController.showContactsWithCommonTag,
+        'get_all_contacts': this.getAllContactsController.getAllContacts,
+      }
+      let controllerButton = event.target;
+      let controllerAction = controllerButton.dataset.type;
+      controllerActions[controllerAction].call(contactApp,controllerButton);
+
+
       if (this.isDeleteContact(targetElement)) {
         this.deleteContactController.deleteContact(targetElement);
       } else if (this.isLinkToAddContactForm(targetElement)) {
@@ -29,6 +88,8 @@ let ContactsApp = {
       } else if (this.isCancelButtonOrHeaderLink(targetElement)) {
         this.getAllContactsController.getAllContacts();
       }
+
+       */
     });
   },
   initializeControllers: function(contactApp) {

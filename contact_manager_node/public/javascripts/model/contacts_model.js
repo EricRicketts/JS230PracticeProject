@@ -92,8 +92,8 @@ let ContactsModel = {
     this.addContactHeader = 'Create Contact';
     this.editContactHeader = 'Edit Contact';
     this.noContactsHeader = 'There are no contacts';
-    this.addContactButtonDataType = 'add_contact';
-    this.editContactButtonDataType = 'edit_contact';
+    this.addContactButtonDataType = 'addContact';
+    this.editContactButtonDataType = 'editContact';
     this.allContacts = null;
     this.allUniqueTags = null;
     return this;

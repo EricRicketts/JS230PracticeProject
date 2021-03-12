@@ -12,7 +12,7 @@
 </head>
   <body>
   <header id="page_header">
-    <a href="" data-type="get_all_contacts"><h1>Contact Manager</h1></a>
+    <a href="" data-type="getAllContacts"><h1>Contact Manager</h1></a>
     <p>Using Backbone.js, Localstorage, RequireJS, Handlebars.js, and Bootstrap</p>
   </header>
   <main>
@@ -22,7 +22,7 @@
 
   <script type="text/x-handlebars-template" data-group="partial" id="form_submit_cancel_partial">
     <button type="button" id="single_contact_button" data-type="{{submit_type}}">Submit</button>
-    <button type="button" data-type="get_all_contacts">Cancel</button>
+    <button type="button" data-type="getAllContacts">Cancel</button>
   </script>
   <script type="text/x-handlebars-template" data-group="partial" id="form_tags_partial">
     <div class="contact_form_generic_field">
@@ -50,7 +50,7 @@
       <p class="hidden"></p>
     </div>
     <div class="contact_form_generic_field_button">
-      <button type="button" data-type="addTag">Add</button>
+      <button type="button" data-type="addNewTag">Add</button>
     </div>
   </script>
   <script type="text/x-handlebars-template" data-group="partial" id="single_contact_partial">
@@ -69,13 +69,13 @@
             {{/each}}
           </select>
           <div class="shared_contacts_button">
-            <button type="button" data-type="shared_contacts">Contacts Sharing Tag</button>
+            <button type="button" data-type="sharedContacts">Contacts Sharing Tag</button>
           </div>
         </dl>
       </dl>
       <div class="single_contact_buttons">
-        <button type="button" data-type="edit" data-id="{{id}}">Edit</button>
-        <button type="button" data-type="delete" data-id="{{id}}"">Delete</button>
+        <button type="button" data-type="editContactForm" data-id="{{id}}">Edit</button>
+        <button type="button" data-type="deleteContact" data-id="{{id}}"">Delete</button>
       </div>
     </div>
   </script>
@@ -121,7 +121,7 @@
   </script>
   <script type="text/x-handlebars-template" data-group="template" id="show_contacts_header_template">
     <div class="show_contacts_header">
-      <button type="button" class="header_button" data-type="add">Add Contact</button>
+      <button type="button" class="header_button" data-type="addContactForm">Add Contact</button>
       <input type="search" id="search" name="search" placeholder="Search">
     </div>
   </script>

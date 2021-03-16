@@ -13,9 +13,9 @@ let TagController = {
     let currentTagsSelect = form.querySelector('#tags');
     let inputElement = targetElement.parentElement.previousElementSibling.querySelector('input');
     let newTagValue = `${inputElement.value.trim()}`;
-      if (this.formErrorController.verifyNewTag(inputElement, newTagValue)) {
+    if (this.formErrorController.verifyNewTag(inputElement, newTagValue)) {
       inputElement.value = '';
-        this.view.addNewTagToTags(currentTagsSelect, newTagValue);
+      this.view.addNewTagToTags(currentTagsSelect, newTagValue);
     }
   },
   addNewTagOrAddAvailableTag(targetElement) {

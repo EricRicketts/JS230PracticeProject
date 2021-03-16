@@ -103,5 +103,19 @@
     "email": "speedy_gonzales@warnerbros.com",
     "tags": "entertainer",
     "id": 16
+  },
+  {
+    "full_name": "Wile E Coyote",
+    "phone_number": "8913201033",
+    "email": "wile_e_coyote@warnerbors.com",
+    "tags": "entertainer,cartoon,clown,genius",
+    "id": 17
+  },
+  {
+    "full_name": "Road Runner",
+    "phone_number": "9089195456",
+    "email": "road_runner@warnerbros.com",
+    "tags": "cartoon,entertainer,fast",
+    "id": 18
   }
 ]

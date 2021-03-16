@@ -7,7 +7,6 @@ let Helpers = {
     });
     desiredFormInputs.forEach(input => {
       input.addEventListener('focus', event => {
-        input.value = '';
         this.app.view.removeErrorMessage(event.target);
       });
     });

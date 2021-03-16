@@ -1,7 +1,6 @@
 let ContactsView = {
   addNewTagToTags(currentTagsSelectElement, newTagValue) {
     let newOption = new Option(newTagValue, newTagValue, false, false);
-    newOption.disabled = true;
     currentTagsSelectElement.appendChild(newOption);
   },
   errorMessage: function(inputElement, errorStr) {
@@ -96,7 +95,6 @@ let ContactsView = {
     let selectedTagIndex = availableTagsSelect.selectedIndex;
     let selectedTag = availableTagsSelect.options[selectedTagIndex];
     let clonedSelectedTag = selectedTag.cloneNode(true);
-    clonedSelectedTag.disabled = true;
     currentTagsSelect.appendChild(clonedSelectedTag);
     availableTagsSelect.removeChild(availableTagsSelect.options[selectedTagIndex]);
     if (this.app.helpers.areThereNoAvailableTags(availableTagsSelect)) {

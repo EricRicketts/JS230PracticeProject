@@ -5,7 +5,6 @@ let GetAllContactsController = {
     });
   },
   getAllContactsRequest: function(event, url, method) {
-    event && event.preventDefault();
     let getAllContactsXhr = new XMLHttpRequest();
     getAllContactsXhr.open(method, url);
     getAllContactsXhr.responseType = 'json';

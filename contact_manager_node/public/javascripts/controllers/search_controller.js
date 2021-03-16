@@ -1,7 +1,4 @@
 let SearchController = {
-  clearSearchString: function() {
-    this.searchString = [];
-  },
   searchForContacts: function(event) {
     if (event.key) {
       let searchString = event.target.value;
@@ -17,7 +14,6 @@ let SearchController = {
   },
   init: function(contactApp) {
     Object.setPrototypeOf(this, contactApp);
-    this.searchString = [];
     return this;
   }
 }

@@ -1,12 +1,12 @@
-import { ContactsView } from "./view/contacts_view.js";
-import { ContactsModel } from "./model/contacts_model.js";
-import { GetAllContactsController } from './controllers/get_all_contacts_contoller.js';
-import { DeleteContactController } from "./controllers/delete_contact_controller.js";
 import { AddContactController } from "./controllers/add_contact_controller.js";
+import { DeleteContactController } from "./controllers/delete_contact_controller.js";
 import { EditContactController } from "./controllers/edit_contact_controller.js";
 import { FormErrorController } from "./controllers/form_error_controller.js";
-import { TagController } from "./controllers/tag_controller.js";
+import { GetAllContactsController } from './controllers/get_all_contacts_contoller.js';
 import { SearchController } from "./controllers/search_controller.js";
+import { TagController } from "./controllers/tag_controller.js";
+import { ContactsModel } from "./model/contacts_model.js";
+import { ContactsView } from "./view/contacts_view.js";
 import { Helpers } from './helpers/helpers.js';
 
 let ContactsApp = {

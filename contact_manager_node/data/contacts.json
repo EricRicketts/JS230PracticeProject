@@ -24,8 +24,8 @@
     "id": 4,
     "full_name": "Eric Ricketts",
     "email": "eric_ricketts@icloud.com",
-    "phone_number": "9194495529",
-    "tags": null
+    "phone_number": "8913452299",
+    "tags": "programmer,pickleball player"
   },
   {
     "id": 5,
@@ -96,5 +96,12 @@
     "email": "marvin_the_martian@warnerbros.com",
     "tags": "alien,cartoon",
     "id": 15
+  },
+  {
+    "full_name": "Speedy Gonzales",
+    "phone_number": "4044042399",
+    "email": "speedy_gonzales@warnerbros.com",
+    "tags": "entertainer",
+    "id": 16
   }
 ]

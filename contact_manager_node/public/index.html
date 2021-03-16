@@ -114,15 +114,15 @@
       </form>
     </div>
   </script>
-  <script type="text/x-handlebars-template" data-group="template" id="no_contacts_tempalte">
+  <script type="text/x-handlebars-template" data-group="template" id="no_contacts_template">
     <div class="no_contacts">
-      <h2>There are no contacts</h2>
+      <h2>{{header}}</h2>
     </div>
   </script>
   <script type="text/x-handlebars-template" data-group="template" id="show_contacts_header_template">
     <div class="show_contacts_header">
       <button type="button" class="header_button" data-type="addContactForm">Add Contact</button>
-      <input type="search" id="search" name="search" placeholder="Search">
+      <input type="search" id="search" name="search" data-type="search" placeholder="Search contact by name">
     </div>
   </script>
   <script type="text/x-handlebars-template" data-group="template" id="show_form_header_template">

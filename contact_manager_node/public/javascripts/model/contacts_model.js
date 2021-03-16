@@ -59,7 +59,10 @@ let ContactsModel = {
     return contactObject;
   },
   search: function(searchString) {
-    let searchResults = this.allContacts.filter(contact => contact.full_name.includes(searchString));
+    let lowerCaseSearch = searchString.toLowerCase();
+    let searchResults = this.allContacts.filter(contact => {
+      return contact.full_name.toLowerCase().includes(lowerCaseSearch);
+    });
     return { contacts: searchResults };
   },
   storeAllContactData(serverContactData) {

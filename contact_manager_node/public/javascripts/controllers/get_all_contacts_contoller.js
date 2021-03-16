@@ -13,16 +13,11 @@ let GetAllContactsController = {
     return getAllContactsXhr;
   },
   showHomePageView: function() {
-    // let contacts = this.app.model.formattedAllContactData();
-    // let contactsExist = this.app.model.allContacts && this.app.model.allContacts.length > 0;
-    // contactsExist ? this.app.view.showAllContactsAndHeader(contacts) : this.app.view.showNoContactsAndHeader();
     let contacts = this.model.formattedAllContactData();
     let contactsExist = this.model.allContacts && this.model.allContacts.length > 0;
     contactsExist ? this.view.showAllContactsAndHeader(contacts) : this.view.showNoContactsAndHeader();
   },
   updateModelContactsAndTagsCache: function(contactsArray) {
-    // this.app.model.storeAllContactData(contactsArray);
-    // this.app.model.storeAllUniqueTagData(contactsArray);
     this.model.storeAllContactData(contactsArray);
     this.model.storeAllUniqueTagData(contactsArray);
   },
@@ -32,7 +27,6 @@ let GetAllContactsController = {
     this.showHomePageView();
   },
   init: function(contactsApp) {
-    // this.app = contactsApp;
     Object.setPrototypeOf(this, contactsApp);
     this.url = 'http://localhost:3000/api/contacts';
     this.method = 'GET';

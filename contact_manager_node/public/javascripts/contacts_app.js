@@ -6,6 +6,7 @@ import { AddContactController } from "./controllers/add_contact_controller.js";
 import { EditContactController } from "./controllers/edit_contact_controller.js";
 import { FormErrorController } from "./controllers/form_error_controller.js";
 import { TagController } from "./controllers/tag_controller.js";
+import { SearchController } from "./controllers/search_controller.js";
 import { Helpers } from './helpers/helpers.js';
 
 let ContactsApp = {
@@ -37,59 +38,21 @@ let ContactsApp = {
       }.bind(this),
       sharedContacts: function(confirmAction) {
         return this.tagController.showContactsWithCommonTag(confirmAction);
+      }.bind(this),
+      search: function(event) {
+        return this.searchController.searchForContacts(event);
       }.bind(this)
     }
-/*
-    let controllerActions = {};
-    let self = this;
-    [
-      ['add', self.addContactController.addContactForm.bind(self)]
-    ].forEach(function(arr) {
-      let [prop, fn] = [...arr];
-      controllerActions[prop] = function(confirmAction) { return fn(confirmAction) };
-    });
-
- */
     this.document.addEventListener('click', event => {
       let confirmAction = event.target;
       let controllerAction = confirmAction.dataset.type;
       let fn = controllerActions[controllerAction];
       typeof fn === 'function' ? fn(confirmAction) : '';
-      /*
-      let controllerActions = {
-        'delete': this.deleteContactController.deleteContact,
-        'add': this.addContactController.addContactForm,
-        'edit': this.editContactController.editContactForm,
-        'edit_contact': this.editContactController.verifyAndSubmitEditContactForm,
-        'addTag':this.tagController.addNewTagOrAddAvailableTag,
-        'transferTag':this.tagController.addNewTagOrAddAvailableTag,
-        'shared_contacts': this.tagController.showContactsWithCommonTag,
-        'get_all_contacts': this.getAllContactsController.getAllContacts,
-      }
-      let controllerButton = event.target;
-      let controllerAction = controllerButton.dataset.type;
-      controllerActions[controllerAction].call(contactApp,controllerButton);
-
-
-      if (this.isDeleteContact(targetElement)) {
-        this.deleteContactController.deleteContact(targetElement);
-      } else if (this.isLinkToAddContactForm(targetElement)) {
-        this.addContactController.addContactForm(targetElement);
-      } else if (this.isSubmitAddContactForm(targetElement)) {
-        this.addContactController.verifyAndSubmitAddContactForm();
-      } else if (this.isLinkToEditContactForm(targetElement)) {
-        this.editContactController.editContactForm(targetElement);
-      } else if (this.isSubmitEditContactForm(targetElement)) {
-        this.editContactController.verifyAndSubmitEditContactForm();
-      } else if (this.isAddNewTagOrAddAvailableTag(targetElement)) {
-        this.tagController.addNewTagOrAddAvailableTag(targetElement);
-      } else if (this.isShowContactsWithCommonTag(targetElement)) {
-        this.tagController.showContactsWithCommonTag(targetElement);
-      } else if (this.isCancelButtonOrHeaderLink(targetElement)) {
-        this.getAllContactsController.getAllContacts();
-      }
-
-       */
+    });
+    this.document.addEventListener('keyup', event => {
+      let confirmAction = event.target;
+      let controllerAction = event.target.dataset.type;
+      controllerAction === 'search' ? controllerActions[controllerAction](event) : '';
     });
   },
   initializeControllers: function(contactApp) {
@@ -99,31 +62,8 @@ let ContactsApp = {
     this.editContactController = EditContactController.init(contactApp);
     this.formErrorController = FormErrorController.init(contactApp);
     this.tagController = TagController.init(contactApp);
+    this.searchController = SearchController.init(contactApp);
     this.helpers = Helpers.init(contactApp);
-  },
-  isAddNewTagOrAddAvailableTag(targetElement) {
-    return targetElement.dataset.type === 'transferTag' || targetElement.dataset.type === 'addTag';
-  },
-  isCancelButtonOrHeaderLink: function(targetElement) {
-    return targetElement.dataset.type === 'get_all_contacts';
-  },
-  isDeleteContact: function(targetElement) {
-    return targetElement.dataset.type === 'delete';
-  },
-  isLinkToAddContactForm: function(targetElement) {
-    return targetElement.dataset.type === 'add';
-  },
-  isShowContactsWithCommonTag(targetElement) {
-    return targetElement.dataset.type === 'shared_contacts';
-  },
-  isSubmitAddContactForm: function(targetElement) {
-    return targetElement.dataset.type === 'add_contact';
-  },
-  isSubmitEditContactForm: function(targetElement) {
-    return targetElement.dataset.type === 'edit_contact';
-  },
-  isLinkToEditContactForm: function(targetElement) {
-    return targetElement.dataset.type === 'edit';
   },
   init: function(document) {
     this.document = document;

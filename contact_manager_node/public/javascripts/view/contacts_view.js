@@ -80,6 +80,14 @@ let ContactsView = {
     this.insertContactsHeader();
     this.mainContent.insertAdjacentHTML('afterbegin', this.noContactsTemplate());
   },
+  showNoSearchResults: function(noSearchResults) {
+    this.removeAllChildren(this.mainContent);
+    this.mainContent.insertAdjacentHTML('afterbegin', this.noContactsTemplate(noSearchResults));
+  },
+  showSearchResults: function(searchResults) {
+    this.removeAllChildren(this.mainContent);
+    this.mainContent.insertAdjacentHTML('afterbegin', this.allContactsTemplate(searchResults));
+  },
   storeMainHeaderAndContentElement: function() {
     this.mainHeader = this.app.document.getElementById('content_heading');
     this.mainContent = this.app.document.getElementById('content');

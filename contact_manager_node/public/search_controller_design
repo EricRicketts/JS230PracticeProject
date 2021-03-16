@@ -1,0 +1,5 @@
+1.  Only search on the name
+2.  The search pattern increases every time a new character is input
+3.  We need to search the cached contacts, not make an get request every time
+4.  We need to have an banner indicating no results found as part of the search
+5.  how to handle deletes and backspaces?

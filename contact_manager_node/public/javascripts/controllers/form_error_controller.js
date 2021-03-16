@@ -1,7 +1,6 @@
 let FormErrorController = {
   duplicateTagError: function(input) {
     let errorStr = 'Duplicate tag, please choose another.';
-    // this.app.view.errorMessage(input, errorStr);
     this.view.errorMessage(input, errorStr);
   },
   initializeAllFormInputs: function(form) {
@@ -23,17 +22,14 @@ let FormErrorController = {
   },
   noInputError: function(input) {
     let errorStr = this.noInputErrorMessages[input.name];
-    // this.app.view.errorMessage(input, errorStr);
     this.view.errorMessage(input, errorStr);
   },
   patternMismatchError: function(input) {
     let errorStr = this.patternMismatchMessages[input.name];
-    // this.app.view.errorMessage(input, errorStr);
     this.view.errorMessage(input, errorStr);
   },
   tagPatternMismatchError(input) {
     let errorStr = this.patternMismatchMessages[input.id];
-    // this.app.view.errorMessage(input, errorStr);
     this.view.errorMessage(input, errorStr);
   },
   verifyAllInputs: function(form) {
@@ -47,7 +43,6 @@ let FormErrorController = {
     if (inputElement.validity.patternMismatch || newTagValue.length === 0) {
       this.tagPatternMismatchError(inputElement);
       return false;
-    // } else if (this.app.model.tagIsDuplicate(newTagValue)) {
     } else if (this.model.tagIsDuplicate(newTagValue)) {
       this.duplicateTagError(inputElement);
       return false;
@@ -55,7 +50,6 @@ let FormErrorController = {
     return true;
   },
   init: function(contactApp) {
-    // this.app = contactApp;
     Object.setPrototypeOf(this, contactApp);
     this.noInputErrorMessages = {
       'full_name': 'A full name is required.',

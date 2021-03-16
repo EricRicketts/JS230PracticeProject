@@ -41,6 +41,9 @@ let EditContactController = {
       this.populateEditFormHeaderAndTagFields(contactData);
       this.form = this.document.getElementById('edit_add_contact_form');
       let contactObject = this.model.formContactObject(contactData);
+      ['full_name', 'email', 'phone_number'].forEach(key => {
+        this.originalNonTagData[key] = contactData[key];
+      });
       this.populateRestOfEditForm(contactObject, this.form);
       this.helpers.addFocusListeners(this.form);
     });
@@ -61,11 +64,12 @@ let EditContactController = {
     });
   },
   verifyAndSubmitEditContactForm: function() {
-    if (this.formErrorController.verifyAllInputs(this.form)) { this.buildAndSendRequest(this.form); }
+    if (this.formErrorController.verifyAllInputs(this.form, true)) { this.buildAndSendRequest(this.form); }
   },
   init: function(contactApp) {
     Object.setPrototypeOf(this, contactApp);
     this.url = 'http://localhost:3000/api/contacts';
+    this.originalNonTagData = {};
     return this;
   }
 }

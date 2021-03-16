@@ -58,7 +58,7 @@
   {
     "id": 9,
     "full_name": "Bugs Bunny",
-    "email": "bugs_bunny@warnbros.com",
+    "email": "bugs_bunny@warnerbros.com",
     "phone_number": "4788741166",
     "tags": "entertainer"
   },
@@ -85,9 +85,9 @@
   },
   {
     "full_name": "Tweety Bird",
-    "phone_number": "9088091144",
+    "phone_number": "1065012947",
     "email": "tweety_bird@warnerbros.com",
-    "tags": "cartoon,entertainer,programmer,friend",
+    "tags": "cartoon,entertainer,friend,programmer,clown",
     "id": 13
   },
   {
@@ -117,5 +117,19 @@
     "email": "road_runner@warnerbros.com",
     "tags": "cartoon,entertainer,fast",
     "id": 18
+  },
+  {
+    "full_name": "Witch Hazel",
+    "phone_number": "9846164423",
+    "email": "witch_hazel@warnerbros.com",
+    "tags": "cartoon,entertainer,witch",
+    "id": 19
+  },
+  {
+    "full_name": "Tasmanian Devil",
+    "phone_number": "3802873901",
+    "email": "tasmanian_devil@warnerbros.com",
+    "tags": "cartoon,entertainer,energy",
+    "id": 20
   }
 ]

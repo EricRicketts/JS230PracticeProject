@@ -27,10 +27,14 @@ let TagController = {
   },
   showContactsWithCommonTag: function(targetElement) {
     let tagsSelectElement = targetElement.parentElement.previousElementSibling;
-    let selectedTag = tagsSelectElement.options[tagsSelectElement.selectedIndex].value;
-    let sharedContacts = this.model.findContactsWithTag(selectedTag);
-    let formattedSharedContacts = this.model.formatGivenContactData(sharedContacts);
-    this.view.showAllContactsAndHeader(formattedSharedContacts);
+    if (tagsSelectElement.options.length === 0) {
+      this.view.showNoSearchResults({ header: 'This contact has no tags.' });
+    } else {
+      let selectedTag = tagsSelectElement.options[tagsSelectElement.selectedIndex].value;
+      let sharedContacts = this.model.findContactsWithTag(selectedTag);
+      let formattedSharedContacts = this.model.formatGivenContactData(sharedContacts);
+      this.view.showAllContactsAndHeader(formattedSharedContacts);
+    }
   },
   init: function(contactApp) {
     Object.setPrototypeOf(this, contactApp);

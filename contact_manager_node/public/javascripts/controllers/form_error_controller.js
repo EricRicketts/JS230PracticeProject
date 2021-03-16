@@ -1,4 +1,8 @@
 let FormErrorController = {
+  duplicateEntryError: function(input) {
+    let errorStr = this.duplicateEntryErrorMessages[input.name];
+    this.view.errorMessage(input, errorStr);
+  },
   duplicateTagError: function(input) {
     let errorStr = 'Duplicate tag, please choose another.';
     this.view.errorMessage(input, errorStr);
@@ -10,12 +14,25 @@ let FormErrorController = {
     this.phoneNumberInput = this.form.querySelector('input[name=phone_number]');
     return Array.of(this.nameInput, this.emailInput, this.phoneNumberInput);
   },
+  isDuplicateEntry: function(input) {
+    let key = input.name;
+    let originalValue = this.editContactController.originalNonTagData[key];
+    if (this.editForm && input.value.trim() === originalValue) {
+      return false;
+    }
+    return this.model.allContacts.find(contact => {
+      return contact[key] === input.value;
+    });
+  },
   isValid: function(input) {
     if (input.validity.valueMissing) {
       this.noInputError(input);
       return false;
     } else if (input.validity.patternMismatch) {
       this.patternMismatchError(input);
+      return false;
+    } else if (this.isDuplicateEntry(input)) {
+      this.duplicateEntryError(input);
       return false;
     }
     return true;
@@ -32,7 +49,8 @@ let FormErrorController = {
     let errorStr = this.patternMismatchMessages[input.id];
     this.view.errorMessage(input, errorStr);
   },
-  verifyAllInputs: function(form) {
+  verifyAllInputs: function(form, editForm=false) {
+    this.editForm = editForm;
     this.allFormInputs = this.initializeAllFormInputs(form);
     return this.allFormInputs.reduce((inputStatus, input) => {
       inputStatus.push(this.isValid(input));
@@ -62,6 +80,12 @@ let FormErrorController = {
       'phone_number': 'Enter a valid phone number, 10 digits.',
       'new_tag': 'Enter a valid tag, at least one letter or digit.'
     };
+    this.duplicateEntryErrorMessages = {
+      'full_name': 'That name already exists.',
+      'email': 'That email already exists.',
+      'phone_number': 'That phone numbers already exists.'
+    }
+    this.editForm = false;
     return this;
   }
 }

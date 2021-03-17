@@ -32,7 +32,7 @@ describe('Contact Model', function () {
     });
 
     it('should format add contact and edit contact submit buttons', function () {
-      expected = [{ submit_type: 'add_contact' }, { submit_type: 'edit_contact' }];
+      expected = [{ submit_type: 'addContact' }, { submit_type: 'editContact' }];
       results = [contacts.formatAddContactSubmitButton(), contacts.formatEditContactSubmitButton()];
       expect(results).to.deep.equal(expected);
     });
@@ -83,6 +83,13 @@ describe('Contact Model', function () {
               email: "eric_ricketts@icloud.com",
               phone_number: "9194495529",
               tags: []
+            },
+            {
+              id: 5,
+              full_name: "Wendy Ricketts",
+              email: "wendy_ricketts@icloud.com",
+              phone_number: "9194495456",
+              tags: ["relative"]
             },
             {
               id: 6,

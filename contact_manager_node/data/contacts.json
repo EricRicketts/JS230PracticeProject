@@ -10,15 +10,8 @@
     "id": 2,
     "full_name": "Victor Reyes",
     "email": "vpr@example.com",
-    "phone_number": "09876543210",
-    "tags": "work,friend"
-  },
-  {
-    "id": 3,
-    "full_name": "Pete Hanson",
-    "email": "ph@example.com",
-    "phone_number": "7830981200",
-    "tags": "programmer,work"
+    "phone_number": "0931293488",
+    "tags": "friend,work,programmer"
   },
   {
     "id": 4,

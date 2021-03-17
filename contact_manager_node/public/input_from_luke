@@ -1,0 +1,5 @@
+1.  For selects have a drop down symbol
+2.  when searching on tags, after the search result, add an indicator what you are looking at.
+3.  make email and phone number optional
+4.  Show which fields are mandatory
+5.  Move event listeners to appropriate elements

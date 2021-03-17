@@ -3,3 +3,4 @@
 3.  make email and phone number optional
 4.  Show which fields are mandatory
 5.  Move event listeners to appropriate elements
+6.  Search on multiple tags, not just one tag
